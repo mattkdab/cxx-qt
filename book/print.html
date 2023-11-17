@@ -1,0 +1,2024 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>CXX-Qt Documentation</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/1-qobjects-in-rust.html"><strong aria-hidden="true">2.1.</strong> QObjects in Rust</a></li><li class="chapter-item expanded "><a href="getting-started/2-our-first-cxx-qt-module.html"><strong aria-hidden="true">2.2.</strong> Our first CXX-Qt module</a></li><li class="chapter-item expanded "><a href="getting-started/3-qml-gui.html"><strong aria-hidden="true">2.3.</strong> Creating the QML GUI</a></li><li class="chapter-item expanded "><a href="getting-started/4-cargo-executable.html"><strong aria-hidden="true">2.4.</strong> Building with Cargo</a></li><li class="chapter-item expanded "><a href="getting-started/5-cmake-integration.html"><strong aria-hidden="true">2.5.</strong> Building with CMake</a></li></ol></li><li class="chapter-item expanded "><a href="concepts/index.html"><strong aria-hidden="true">3.</strong> Core Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="concepts/build_systems.html"><strong aria-hidden="true">3.1.</strong> Build Systems</a></li><li class="chapter-item expanded "><a href="concepts/generated_qobject.html"><strong aria-hidden="true">3.2.</strong> Generated QObject</a></li><li class="chapter-item expanded "><a href="concepts/types.html"><strong aria-hidden="true">3.3.</strong> Types</a></li><li class="chapter-item expanded "><a href="concepts/nested_objects.html"><strong aria-hidden="true">3.4.</strong> Nested Objects</a></li><li class="chapter-item expanded "><a href="concepts/inheritance.html"><strong aria-hidden="true">3.5.</strong> Inheritance & Overriding</a></li></ol></li><li class="chapter-item expanded "><a href="bridge/index.html"><strong aria-hidden="true">4.</strong> Reference: the bridge module</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="bridge/extern_rustqt.html"><strong aria-hidden="true">4.1.</strong> extern "RustQt"</a></li><li class="chapter-item expanded "><a href="bridge/extern_cppqt.html"><strong aria-hidden="true">4.2.</strong> extern "C++Qt"</a></li><li class="chapter-item expanded "><a href="bridge/shared_types.html"><strong aria-hidden="true">4.3.</strong> Shared types</a></li><li class="chapter-item expanded "><a href="bridge/attributes.html"><strong aria-hidden="true">4.4.</strong> Attributes</a></li><li class="chapter-item expanded "><a href="bridge/traits.html"><strong aria-hidden="true">4.5.</strong> Traits</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">CXX-Qt Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!--
+SPDX-FileCopyrightText: 2021 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Andrew Hayzen <andrew.hayzen@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="cxx-qt---safe-interop-between-rust-and-qt"><a class="header" href="#cxx-qt---safe-interop-between-rust-and-qt">CXX-Qt - Safe interop between Rust and Qt</a></h1>
+<p align=center><a href="./getting-started/index.html">TLDR: Click here for "Getting Started" guide</a></p>
+<p>This library provides a safe mechanism for bridging between Qt code and Rust code in a different way to typical Rust Qt bindings.</p>
+<p>We acknowledge that Qt code and Rust code have different idioms so cannot be directly wrapped from one to another.</p>
+<p>Instead of one-to-one bindings we use <a href="https://cxx.rs/">CXX</a> to <a href="./bridge/index.html">bridge</a> between, this allows for normal Qt code and normal Rust code.</p>
+<p>We feel this is more powerful than typical bindings as this allows us to provide a safe API and safe multi-threading between Qt and Rust.</p>
+<p>To aid integration of Qt and Rust code we provide common <a href="./concepts/types.html">Qt types</a> for Rust which can pass across the bridge and provide ways to express common Qt idioms.</p>
+<p>Through the use of macros and code generation as seen in the figure below, the developer describes a <code>QObject</code> with CXX-Qt macro annotations. Then CXX-Qt generates the C++ representation of the object and uses macro expansion to define the <a href="https://cxx.rs/">CXX</a> bridge for the interop between C++ and Rust.</p>
+<div style="background-color: white; padding: 1rem; text-align: center;">
+<p><img src="./images/overview_abstract.svg" alt="Overview of CXX-Qt concept" /></p>
+</div>
+<p>If you are new to CXX-Qt, we recommend you visit our <a href="./getting-started/index.html">Getting Started Guide</a>.</p>
+<p>To get detailed information on which features are available in CXX-Qt, see the <a href="./bridge/index.html">bridge chapter</a>.
+Should you be interested in a deeper dive into the concepts of CXX-Qt, take a look at the <a href="./concepts/index.html">concepts chapter</a>, which explains the concepts CXX-Qt introduces in detail.</p>
+<p><strong>Note:</strong> CXX-Qt is tested on CI on Linux, Windows, and macOS (all on x86_64). It should work on other platforms that Qt and Rust both support, however, these are not tested regularly.</p>
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2022 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Leon Matthes <leon.matthes@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="cxx-qt---getting-started"><a class="header" href="#cxx-qt---getting-started">CXX-Qt - Getting Started</a></h1>
+<p>In comparison to other Qt-Rust-bindings, CXX-Qt does not aim to simply expose Qt functionality to Rust, but rather to completely integrate Rust into the Qt ecosystem.</p>
+<p>In this guide we'll go through a minimal example that uses CXX-Qt to create your own QObject in Rust and integrate it with a small QML-based GUI.</p>
+<h3 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h3>
+<p>This guide won't be able to explain everything to you, but it will try its best to make sure everyone can follow along.
+However, there are a few things you should be familiar with before reading this guide.
+It may be confusing otherwise!</p>
+<p>First of all, you should be familiar with Rust. There are many great resources for learning Rust, like <a href="https://doc.rust-lang.org/book/">the book</a>.</p>
+<p>As CXX-Qt aims to integrate Rust into the existing Qt ecosystem, you should have basic knowledge of Qt and QML.
+If you're not familiar with Qt/QML yet, take a look at the <a href="https://doc.qt.io/qt-6/gettingstarted.html">Qt Getting started guide</a> or the <a href="https://doc.qt.io/qt-6/qmlapplications.html">QML intro</a> respectively.</p>
+<p>CXX-Qt (as the name suggests) is built on top of <a href="https://cxx.rs">CXX</a>.
+You should have a basic idea of how CXX works before attempting to follow this guide.
+Take a look at the CXX documentation here: <a href="https://cxx.rs/">https://cxx.rs/</a></p>
+<h4 id="installation"><a class="header" href="#installation">Installation</a></h4>
+<p>You'll need to have the following tools installed:</p>
+<ul>
+<li>A working C/C++ compiler</li>
+<li><a href="https://cmake.org/">CMake version 3.24 or above</a></li>
+<li><a href="https://rustup.rs/">The Rust toolchain</a></li>
+<li><a href="https://www.qt.io/download-open-source">Qt 5 or Qt 6</a> - the open source version will do just fine</li>
+</ul>
+<blockquote>
+<p>⚠️ It is vital that the <code>qmake</code> executable can be found by CXX-Qt.
+Under Windows you may have to manually add it to your <code>PATH</code> in order for this to work automatically.</p>
+<p>To check that qmake can indeed be found, run:</p>
+<pre><code class="language-console">$ qmake --version
+QMake version 3.1
+Using Qt version 6.5.1 in /usr/lib64
+</code></pre>
+<p>If you don't want to add QMAKE to your path you can always provide Cargo with the right path by
+using the <code>QMAKE</code> environment variable.<br />
+e.g.: <code>QMAKE=/usr/bin/qmake cargo build</code></p>
+</blockquote>
+<p>We unfortunately cannot list all ways to install these tools on all platforms.
+Please make sure you have installed the right toolchains before following this guide!</p>
+<h3 id="what-this-guide-covers"><a class="header" href="#what-this-guide-covers">What this guide covers</a></h3>
+<p>During this getting started guide we'll first take a look at how CXX-Qt integrates with Qt's object system to allow the <a href="getting-started/./1-qobjects-in-rust.html">definition of QObjects in Rust</a>.
+Then we'll dive straight into practice and define our first <a href="getting-started/./2-our-first-cxx-qt-module.html">QObject in Rust</a>.
+Followed by actually <a href="getting-started/./3-qml-gui.html">defining our GUI using QML</a>.</p>
+<p>We will show two different ways to build the project.
+First we will build the CXX-Qt code <a href="getting-started/./4-cargo-executable.html">as a Rust executable</a> without requiring a C++ build system.
+Additionally, we will show how to integrate CXX-Qt into a C++ application by <a href="getting-started/./5-cmake-integration.html">building with CMake</a>.</p>
+<p><strong>Note:</strong> CXX-Qt is tested on CI on Linux, Windows, and macOS (all on x86_64). It should work on other platforms that Qt and Rust both support, however, these are not tested regularly.</p>
+<p>So, without further ado - let's <a href="getting-started/./1-qobjects-in-rust.html">Get Started</a></p>
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2022 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Leon Matthes <leon.matthes@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="qobjects-in-rust"><a class="header" href="#qobjects-in-rust">QObjects in Rust</a></h1>
+<blockquote>
+<p>The right tool for the right job.</p>
+</blockquote>
+<blockquote>
+<p>If you only have a hammer, every problem looks like a nail.</p>
+</blockquote>
+<blockquote>
+<p>Don't bring a knife to a gun fight.</p>
+</blockquote>
+<p>There are many bits of advice like that.
+With CXX-Qt, we aim to make it possible to use the right tool for each of the many jobs necessary to build a modern GUI application.</p>
+<p>So what is in our toolbox for a typical Qt application?</p>
+<ul>
+<li>QML - A declarative, flexible, dynamically-typed, interpreted language that is purpose built to define reactive and beautiful GUI layouts and widgets with quick iteration speed.</li>
+<li>C++ - The traditional back-end of Qt - A fast, low-level language with a strong type system. C++ offers a rich ecosystem, many Qt-specific libraries and bare-metal performance. The cost when using C++ is that it is slow to develop, very error-prone and can easily lead to memory-issues, which can instantly crash your application and cause security issues.</li>
+</ul>
+<p>Notably absent then is a back-end language that allows us to get rid of the issues C++ has and provides us with a safe way to write fast back-end code.
+This of course is where Rust comes in.
+Whilst Rust doesn't have quite as rich of an ecosystem, it is typically faster to develop than C++, with easy dependency management, and most importantly, safe memory access.
+Therefore it is an ideal candidate to replace C++ for writing the back-end business-logic code that feeds the GUI with data.</p>
+<p>However, C++ as well as QML still have their place in Qt applications.
+For that reason Rust, C++, and QML should all be able to be used to complement each other.
+CXX-Qt aims to make it easy to integrate all three languages with each other, through the use of Qt's <a href="https://doc.qt.io/qt-6/metaobjects.html">meta object system</a> and <a href="https://cxx.rs">CXX</a>.</p>
+<p>As CXX-Qt is largely an expansion on top of CXX, you should make yourself familiar with CXX first.
+You can read their excellent documentation here:</p>
+<blockquote>
+<p><a href="https://cxx.rs">https://cxx.rs/</a></p>
+</blockquote>
+<p>CXX already provides idiomatic interaction between C++ and Rust, from Rust, as well as from C++.
+CXX-Qt builds on this foundation, to allow you to define Qt-specific concepts in Rust.</p>
+<p>These concepts include:</p>
+<ul>
+<li>Custom QObject classes
+<ul>
+<li>Properties</li>
+<li>Invokables/Slots</li>
+<li>Signals</li>
+</ul>
+</li>
+<li>Enums</li>
+</ul>
+<p>As with CXX, to use these features you mark a Rust module with an attribute macro (<a href="getting-started/../bridge/index.html"><code>#[cxx_qt::bridge]</code></a>).
+Inside this bridge, you then describe the bi-directional interface between your C++/Qt and Rust code.</p>
+<p>CXX-Qt will then expand this Rust bridge into two separate parts:</p>
+<ul>
+<li>C++ files that define QObjects, enums etc. and expose them to <a href="https://doc.qt.io/qt-6/metaobjects.html">Qts meta-object-system</a>.</li>
+<li>The Rust code which provides the Rust implementation of the described structures, as well as interfaces to any C++/Qt constructs you declared.</li>
+</ul>
+<div style="background-color: white; padding: 1rem; text-align: center;">
+<p><img src="getting-started/../images/overview_abstract.svg" alt="Overview of CXX-Qt module generation" /></p>
+</div>
+<h2 id="rust-structs-as-qobjects"><a class="header" href="#rust-structs-as-qobjects">Rust structs as QObjects</a></h2>
+<p>Similar to CXX, CXX-Qt allows you to expose Rust structs as a new type to C++.
+However, CXX-Qt expands this feature to allow you to create a new QObject subclass that is backed by a Rust struct.
+In comparison to a normal opaque CXX class, the mapping between the QObject subclass and the Rust struct is <strong>not 1:1</strong>!</p>
+<p>The QObject subclass it its own type in Rust, as well as in C++.
+When such a QObject is instantiated, it will always also construct an instance of the Rust struct.
+The QObject can then refer to the underlying Rust struct for property access.
+Any behavior of this QObject subclass will also be defined in Rust, e.g. using the <a href="getting-started/../bridge/extern_rustqt.html#invokables"><code>#[qinvokable]</code></a> attribute.
+The Rust implementation also has access to the underlying Rust struct to modify any Rust data.
+In comparison to most CXX types, the outer QObject class and the inner Rust struct will remain two distinct types!</p>
+<p>But enough theory for now, lets jump in and write <a href="getting-started/./2-our-first-cxx-qt-module.html">our first CXX-Qt module</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2022 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Leon Matthes <leon.matthes@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="our-first-cxx-qt-module"><a class="header" href="#our-first-cxx-qt-module">Our first CXX-Qt module</a></h1>
+<p>As with all things Rust, we'll want to create a cargo project, run the following command inside the <code>tutorial</code> folder to initialize the Rust part of the project.</p>
+<pre><code class="language-console">$ cargo new cxx-qt-tutorial
+$ cd cxx-qt-tutorial
+</code></pre>
+<blockquote>
+<p>If you want to skip building with Cargo and try building with CMake directly
+you can add the <code>--lib</code> option here. That will make it easier to create a static library in Rust and use CMake to
+link this into a C++ executable. We'll discuss details of this later, when we <a href="getting-started/./5-cmake-integration.html">integrate our Rust project with CMake</a></p>
+<p>Building with Cargo is easier to start with, so if in doubt, try building with Cargo first.</p>
+</blockquote>
+<p>As outlined in the previous section, to use CXX-Qt, we'll create a Rust module within this crate.
+This Rust module will then serve as our interface between Qt and Rust.
+First, in the <code>src/main.rs</code>, we tell Cargo about the module we're about to create:</p>
+<pre><code class="language-rust ignore">pub mod cxxqt_object;</code></pre>
+<p>Now, we need to create a file <code>rust/src/cxxqt_object.rs</code> for that module.
+It will include our <code>#[cxx_qt::bridge]</code> that allows us to interact with Qt concepts.</p>
+<p>This is a lot to take in, so let's go one step at a time.</p>
+<pre><code class="language-rust ignore">
+/// The bridge definition for our QObject
+#[cxx_qt::bridge]
+pub mod qobject {
+
+    unsafe extern &quot;C++&quot; {
+        include!(&quot;cxx-qt-lib/qstring.h&quot;);
+        /// An alias to the QString type
+        type QString = cxx_qt_lib::QString;
+    }
+
+    unsafe extern &quot;RustQt&quot; {
+        // The QObject definition
+        // We tell CXX-Qt that we want a QObject class with the name MyObject
+        // based on the Rust struct MyObjectRust.
+        #[qobject]
+        #[qml_element]
+        #[qproperty(i32, number)]
+        #[qproperty(QString, string)]
+        type MyObject = super::MyObjectRust;
+    }
+
+    unsafe extern &quot;RustQt&quot; {
+        // Declare the invokable methods we want to expose on the QObject
+        #[qinvokable]
+        fn increment_number(self: Pin&lt;&amp;mut MyObject&gt;);
+
+        #[qinvokable]
+        fn say_hi(self: &amp;MyObject, string: &amp;QString, number: i32);
+    }
+}
+
+use core::pin::Pin;
+use cxx_qt_lib::QString;
+
+/// The Rust struct for the QObject
+#[derive(Default)]
+pub struct MyObjectRust {
+    number: i32,
+    string: QString,
+}
+
+impl qobject::MyObject {
+    /// Increment the number Q_PROPERTY
+    pub fn increment_number(self: Pin&lt;&amp;mut Self&gt;) {
+        let previous = *self.number();
+        self.set_number(previous + 1);
+    }
+
+    /// Print a log message with the given string and number
+    pub fn say_hi(&amp;self, string: &amp;QString, number: i32) {
+        println!(&quot;Hi from Rust! String is '{string}' and number is {number}&quot;);
+    }
+}
+</code></pre>
+<h2 id="cxx-qt-bridge-module"><a class="header" href="#cxx-qt-bridge-module">CXX-Qt bridge module</a></h2>
+<p>Starting with the module definition:</p>
+<pre><code class="language-rust ignore">
+/// The bridge definition for our QObject
+#[cxx_qt::bridge]
+pub mod qobject {
+    // ...
+}</code></pre>
+<p>A <code>#[cxx_qt::bridge]</code> is the same as a <code>#[cxx::bridge]</code> and you can use all features of CXX in it.
+Additionally, a <code>#[cxx_qt::bridge]</code> gives you a few more features that allow you to create QObjects from Rust or declare existing QObjects for access from Rust.</p>
+<h2 id="extern-rustqt"><a class="header" href="#extern-rustqt"><code>extern &quot;RustQt&quot;</code></a></h2>
+<p>Like <code>extern &quot;Rust&quot;</code> and <code>extern &quot;C++&quot;</code> in CXX, CXX-Qt provides <code>extern &quot;RustQt&quot;</code> and <code>extern &quot;C++Qt&quot;</code>.</p>
+<p>These <code>extern</code> blocks instruct CXX-Qt to where the implementation of our interface lives.
+Anything that is marked as <code>extern &quot;RustQt&quot;</code> is implemented in Rust and will be exposed to C++.
+Conversely anything inside <code>extern &quot;C++Qt&quot;</code> is implemented in C++ and will be exposed to Rust.</p>
+<h2 id="qobject-struct"><a class="header" href="#qobject-struct">QObject struct</a></h2>
+<p>First we will create a new QObject subclass.
+As we want to implement it in Rust, we need to place our interface inside <code>extern &quot;RustQt&quot;</code>.</p>
+<p>To create a new QObject subclass that will be defined in Rust, use a type-alias and mark it with <code>#[qobject]</code>.
+In our case the new class will be named <code>MyObject</code> and will be backed by a Rust struct named <code>MyObjectRust</code>.</p>
+<pre><code class="language-rust ignore">    unsafe extern &quot;RustQt&quot; {
+        // The QObject definition
+        // We tell CXX-Qt that we want a QObject class with the name MyObject
+        // based on the Rust struct MyObjectRust.
+        #[qobject]
+        #[qml_element]
+        #[qproperty(i32, number)]
+        #[qproperty(QString, string)]
+        type MyObject = super::MyObjectRust;
+    }</code></pre>
+<p>The Rust struct must be defined <strong>outside</strong> the bridge module and is therefore referred to using <code>super::</code>.
+This just needs to be a normal Rust struct and can contain any kind of field, even Rust-only types that are not compatible with CXX.</p>
+<p>Unless we want to use CXX-Qt's <a href="https://docs.rs/cxx-qt/latest/cxx_qt/trait.Constructor.html">Constructor feature</a> we just need to ensure that this struct implements Rusts <code>Default</code> trait
+In this case we just use <code>#[derive(Default)]</code> on the struct.</p>
+<pre><code class="language-rust ignore">#[derive(Default)]
+pub struct MyObjectRust {
+    number: i32,
+    string: QString,
+}</code></pre>
+<p>Now the <code>#[qobject]</code> macro will take care of creating a new QObject subclass named <code>MyObject</code>.
+Every instance of that class will also include an instance of the <code>MyObjectRust</code> struct that the <code>MyObject</code> class will defer to for any data or behavior.</p>
+<p>To automatically export this new class to QML, we mark it with the <code>#[qml_element]</code> attribute.
+This is the same as specifying <a href="https://doc.qt.io/qt-6/qqmlengine.html#QML_ELEMENT"><code>QML_ELEMENT</code></a> in C++.
+This takes the place of the <a href="https://doc.qt.io/qt-6/qt-add-qml-module.html">qt_add_qml_module CMake function</a>
+(because that doesn't work with CXX-Qt's build system).</p>
+<p>The <code>#[qproperty]</code> attribute will create a <a href="https://doc.qt.io/qt-6/properties.html"><code>Q_PROPERTY</code></a> for the given type and field name.
+CXX-Qt will then:</p>
+<ol>
+<li>Create the <code>Q_PROPERTY</code> on the QObject type.</li>
+<li>Create a <code>NOTIFY</code> signal for when the property changes.</li>
+<li>Generate getters and setters that use the underlying Rust fields and emit the NOTIFY signal on changes.</li>
+</ol>
+<p>In this case the newly created QObject subclass will have two properties: <code>number</code> and <code>string</code>.
+CXX-Qt expects a field for each property to exist in the underlying Rust struct.
+For names that contain multiple words, like <code>my_number</code>, CXX-Qt will automatically rename the field from snake_case to camelCase to fit with C++/QML naming conventions (e.g. <code>myNumber</code>).</p>
+<h3 id="types"><a class="header" href="#types">Types</a></h3>
+<p>Please note that any fields exposed as <code>#[qproperty]</code> must have types that CXX can translate to C++ types.
+In our case that means:</p>
+<ul>
+<li><code>#[qpoperty(i32, number)]</code> -&gt; <code>Q_PROPERTY(::std::int32_t number ...)</code></li>
+<li><code>#[qproperty(QString, string)</code> -&gt; <code>Q_PROPERTY(QString string ...)</code></li>
+</ul>
+<p>For <code>i32</code>, CXX-Qt already knows how to translate it.
+A <code>QString</code> however is unknown to CXX.
+Luckily, the <a href="https://docs.rs/cxx-qt-lib/latest/cxx_qt_lib/"><code>cxx_qt_lib</code></a> crate already wraps many Qt types for us.
+We can just include them in the bridge like any other CXX type:</p>
+<pre><code class="language-rust  ignore">    unsafe extern &quot;C++&quot; {
+        include!(&quot;cxx-qt-lib/qstring.h&quot;);
+        /// An alias to the QString type
+        type QString = cxx_qt_lib::QString;
+    }</code></pre>
+<p>For more details on the available types, see the <a href="getting-started/../concepts/types.html">Qt types page</a>.</p>
+<hr />
+<p>CXX-Qt will then automatically generate a new QObject subclass called <code>MyObject</code> and expose it as an <a href="https://cxx.rs/extern-c++.html#opaque-c-types"><code>extern &quot;C++&quot;</code> opaque type</a> back to Rust.
+In our case, this means we can refer to the C++ QObject as <code>qobject::MyObject</code>, as it is defined inside the <code>mod qobject</code>.</p>
+<p>This type can be used like any other CXX opaque type.</p>
+<h2 id="invokables"><a class="header" href="#invokables">Invokables</a></h2>
+<p>Additionally, CXX-Qt allows us to add functionality to this QObject by referring to the type as the self type of functions in an <code>extern &quot;RustQt&quot;</code> block.</p>
+<pre><code class="language-rust ignore">    unsafe extern &quot;RustQt&quot; {
+        // Declare the invokable methods we want to expose on the QObject
+        #[qinvokable]
+        fn increment_number(self: Pin&lt;&amp;mut MyObject&gt;);
+
+        #[qinvokable]
+        fn say_hi(self: &amp;MyObject, string: &amp;QString, number: i32);
+    }</code></pre>
+<p>This works the same as exposing any other <a href="https://cxx.rs/extern-rust.html#methods">member function with CXX</a> in an <code>extern &quot;Rust&quot;</code> block.
+Additionally CXX-Qt understands the <code>#[qinvokable]</code> attribute and marks the member function as <a href="https://doc.qt.io/qt-6/qtqml-cppintegration-exposecppattributes.html#exposing-methods-including-qt-slots"><code>Q_INVOKABLE</code></a>.
+This means they can be called from QML.</p>
+<p>These functions then need to be implemented outside the bridge using <code>impl qobject::MyObject</code>.</p>
+<pre><code class="language-rust ignore">impl qobject::MyObject {
+    /// Increment the number Q_PROPERTY
+    pub fn increment_number(self: Pin&lt;&amp;mut Self&gt;) {
+        let previous = *self.number();
+        self.set_number(previous + 1);
+    }
+
+    /// Print a log message with the given string and number
+    pub fn say_hi(&amp;self, string: &amp;QString, number: i32) {
+        println!(&quot;Hi from Rust! String is '{string}' and number is {number}&quot;);
+    }
+}</code></pre>
+<p>This setup is a bit unusual, as the type <code>qobject::MyObject</code> is actually defined in C++.
+However, it is still possible to add member functions to it in Rust and then expose them back to C++.
+This is the usual workflow for QObjects in CXX-Qt.
+CXX-Qt will define the QObject class itself in C++, but defer to Rust for any behavior.</p>
+<blockquote>
+<p>Note that we recommend calling the bridge module <code>qobject</code> instead of the CXX-typical <code>ffi</code>.
+This way accessing the C++ QObject outside the bridge becomes a natural <code>qobject::MyObject</code>
+instead of <code>ffi::MyObject</code>.</p>
+<p>Feel free to choose any module name you like though.</p>
+</blockquote>
+<p>Also do not forget to import everything required for the invokable implementation.</p>
+<pre><code class="language-rust ignore">use core::pin::Pin;
+use cxx_qt_lib::QString;</code></pre>
+<p>In our case, we define two new functions:</p>
+<ul>
+<li><code>increment_number</code>
+<ul>
+<li>Increments the number of the <code>MyObject</code>.</li>
+<li>The name will be converted to <code>incrementNumber</code> in C++.</li>
+</ul>
+</li>
+<li><code>say_hello</code>
+<ul>
+<li>Prints a provided number and string.</li>
+<li>The name will be converted to <code>sayHello</code> in C++.</li>
+</ul>
+</li>
+</ul>
+<p>Because we are implementing on the <code>qobject::MyObject</code> type instead of the <code>MyObject</code> type, <code>self</code> here is the C++ QObject that is generated from our <code>MyObject</code> struct.
+As this type is a CXX Opaque type, we can't actually instantiate it.
+Our Qt code will take care of this.
+Also, we can't move the QObject, which is why it is behind a Rust <a href="https://doc.rust-lang.org/std/pin/struct.Pin.html"><code>Pin</code></a>.</p>
+<p>CXX-Qt will generate getters and setters for all properties of our struct.
+That's where the <code>number()</code> and <code>set_number()</code> functions used by <code>increment_number()</code> come from.
+For more details on what you can do with the QObject from Rust and what functions CXX-Qt will generate for you, take a look at the <a href="getting-started/../concepts/generated_qobject.html">QObject page</a>.</p>
+<p>And that's it. We've defined our first QObject subclass in Rust. That wasn't so hard, was it?</p>
+<p>Now let's get to <a href="getting-started/./3-qml-gui.html">using it in Qt</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2022 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Leon Matthes <leon.matthes@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="creating-our-qml-gui"><a class="header" href="#creating-our-qml-gui">Creating our QML GUI</a></h1>
+<p>As noted in the <a href="getting-started/./1-qobjects-in-rust.html">QObjects in Rust</a> chapter, we always want to use &quot;the right tool for the right job&quot;.
+For a small modern GUI in Qt, that definitely means using QML.
+It's powerful, flexible, declarative, and allows us to iterate very quickly.</p>
+<p>So let's add a <code>main.qml</code> file in a <code>qml</code> folder:</p>
+<pre><code class="language-qml ignore">import QtQuick 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Window 2.12
+
+// This must match the uri and version
+// specified in the qml_module in the build.rs script.
+import com.kdab.cxx_qt.demo 1.0
+
+Window {
+    height: 480
+    title: qsTr(&quot;Hello World&quot;)
+    visible: true
+    width: 640
+
+    MyObject {
+        id: myObject
+        number: 1
+        string: qsTr(&quot;My String with my number: %1&quot;).arg(myObject.number)
+    }
+
+    Column {
+        anchors.fill: parent
+        anchors.margins: 10
+        spacing: 10
+
+        Label {
+            text: qsTr(&quot;Number: %1&quot;).arg(myObject.number)
+        }
+
+        Label {
+            text: qsTr(&quot;String: %1&quot;).arg(myObject.string)
+        }
+
+        Button {
+            text: qsTr(&quot;Increment Number&quot;)
+
+            onClicked: myObject.incrementNumber()
+        }
+
+        Button {
+            text: qsTr(&quot;Say Hi!&quot;)
+
+            onClicked: myObject.sayHi(myObject.string, myObject.number)
+        }
+    }
+}
+</code></pre>
+<p>If you're not familiar with QML, take a look at the <a href="https://doc.qt.io/qt-6/qmlapplications.html">Qt QML intro</a>.
+We of course also recommend our <a href="https://www.kdab.com/software-services/on-site-training/qt-onsite/programming-qtqml-onsite-training/">QML Intro Training</a>.</p>
+<p>This code will create a pretty simple GUI that consists of two Labels and two Buttons.
+The important part here is the use of the <code>MyObject</code> type.
+As you can see, the class we defined earlier is now usable in QML.</p>
+<p>As it is just another QObject subclass, it can be used in Qt's property binding system, as is done with the <code>myObject.string</code>, which is bound to <code>myObject.number</code>.</p>
+<p>The labels then simply display the data defined in the <code>MyObject</code> class.
+We can use the two buttons to interact with the <code>MyObject</code> instance.
+As you can see here, CXX-Qt has converted the snake_case of the function names to camelCase - <code>incrementNumber</code> and <code>sayHi</code>.
+This way the <code>MyObject</code> doesn't seem at all out of place in QML.</p>
+<p>It is again important to emphasize here that <code>MyObject</code> is just another QObject subclass and can be used just like any other <code>QObject</code> subclass.
+The only difference being that any invokable functions are defined in Rust, instead of C++.
+For QML, this doesn't make a difference though.</p>
+<p>Now that we have some application code, let's get this project <a href="getting-started/./4-cargo-executable.html">building and running</a></p>
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2022 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Be Wilson <be.wilson@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="building-with-cargo"><a class="header" href="#building-with-cargo">Building with Cargo</a></h1>
+<p>In this example, we will demonstrate how to build the <code>cxxqt_object.rs</code> as well as any QML files using the Rust build system.
+Cargo will do the entire build, including linking to Qt, just like a typical Rust application.</p>
+<p>Note that the folder structure of this example is different to the CMake tutorial.
+The CMake example uses a <code>rust</code> folder where the Rust part of the project resides in.
+In this setup we'll stick with a standard Cargo folder layout with just the added <code>qml</code> folder next to the <code>src</code> folder.</p>
+<p>The complete example code is available in <a href="https://github.com/KDAB/cxx-qt/tree/main/examples/cargo_without_cmake"><code>examples/cargo_without_cmake</code></a>
+in the CXX-Qt repository.</p>
+<blockquote>
+<p>If you don't want to use Cargo, and only want to use CMake to build your project, skip ahead to the <a href="getting-started/./5-cmake-integration.html">next section</a>.</p>
+<p>Using a Cargo based setup is easier though, so if in doubt, try building with Cargo first.</p>
+</blockquote>
+<h2 id="cargo-setup"><a class="header" href="#cargo-setup">Cargo setup</a></h2>
+<p>Add the dependencies to the <code>Cargo.toml</code> file.
+We'll need <code>cxx</code>, <code>cxx-qt</code>, <code>cxx-qt-lib</code> and <code>cxx-qt-build</code>:</p>
+<pre><code class="language-toml ignore">[package]
+name = &quot;qml-minimal-no-cmake&quot;
+version = &quot;0.1.0&quot;
+authors = [
+  &quot;Andrew Hayzen &lt;andrew.hayzen@kdab.com&gt;&quot;,
+  &quot;Be Wilson &lt;be.wilson@kdab.com&gt;&quot;,
+  &quot;Gerhard de Clercq &lt;gerhard.declercq@kdab.com&gt;&quot;,
+  &quot;Leon Matthes &lt;leon.matthes@kdab.com&gt;&quot;
+]
+edition = &quot;2021&quot;
+license = &quot;MIT OR Apache-2.0&quot;
+
+[dependencies]
+cxx = &quot;1.0.95&quot;
+cxx-qt = &quot;0.6&quot;
+cxx-qt-lib = &quot;0.6&quot;
+
+[build-dependencies]
+# The link_qt_object_files feature is required for statically linking Qt 6.
+cxx-qt-build = { version = &quot;0.6&quot;, features = [ &quot;link_qt_object_files&quot; ] }
+</code></pre>
+<p>Now we'll add a <code>build.rs</code> script next to the <code>Cargo.toml</code> file.</p>
+<pre><code class="language-rust ignore">use cxx_qt_build::{CxxQtBuilder, QmlModule};
+
+fn main() {
+    CxxQtBuilder::new()
+        // Link Qt's Network library
+        // - Qt Core is always linked
+        // - Qt Gui is linked by enabling the qt_gui Cargo feature (default).
+        // - Qt Qml is linked by enabling the qt_qml Cargo feature (default).
+        // - Qt Qml requires linking Qt Network on macOS
+        .qt_module(&quot;Network&quot;)
+        .qml_module(QmlModule {
+            uri: &quot;com.kdab.cxx_qt.demo&quot;,
+            rust_files: &amp;[&quot;src/cxxqt_object.rs&quot;],
+            qml_files: &amp;[&quot;qml/main.qml&quot;],
+            ..Default::default()
+        })
+        .build();
+}</code></pre>
+<p>This is what generates and compiles the C++ code for our <code>MyObject</code> class at build time.
+It will also link Qt to our Rust binary.</p>
+<p>Every Rust source file that uses the <code>#[cxx_qt::bridge]</code> macro needs to be included in this script.
+In our case, this is only the <code>src/cxxqt_object.rs</code> file.</p>
+<p>This is also where the QML module is defined with a QML uri and version.
+The files and resources in the module are then exposed in the same way as the <a href="https://doc.qt.io/qt-6/qt-add-qml-module.html">qt_add_qml_module CMake function</a>.</p>
+<p>Refer to the <a href="https://docs.rs/cxx-qt-build/latest/cxx_qt_build/struct.CxxQtBuilder.html">CxxQtBuilder</a>
+and <a href="https://docs.rs/cc/latest/cc/struct.Build.html">cc::Build</a> documentation for further details.</p>
+<h2 id="rust-executable"><a class="header" href="#rust-executable">Rust executable</a></h2>
+<p>In <code>src/main.rs</code>, first import the <code>cxxqt_object</code> module and some types we will need to run our Qt application:</p>
+<pre><code class="language-rust ignore">pub mod cxxqt_object;
+
+use cxx_qt_lib::{QGuiApplication, QQmlApplicationEngine, QUrl};</code></pre>
+<p>Define the <code>main</code> function that will be called when the executable starts. This works just like starting a QML
+application in C++:</p>
+<ul>
+<li>Create a <code>QGuiApplication</code></li>
+<li>Create a <code>QQmlApplicationEngine</code></li>
+<li>Set the QML file path to the engine</li>
+<li>Run the application</li>
+</ul>
+<pre><code class="language-rust ignore">fn main() {
+    // Create the application and engine
+    let mut app = QGuiApplication::new();
+    let mut engine = QQmlApplicationEngine::new();
+
+    // Load the QML path into the engine
+    if let Some(engine) = engine.as_mut() {
+        engine.load(&amp;QUrl::from(&quot;qrc:/qt/qml/com/kdab/cxx_qt/demo/qml/main.qml&quot;));
+    }
+
+    // Start the app
+    if let Some(app) = app.as_mut() {
+        app.exec();
+    }
+}</code></pre>
+<p>To build and run the application, use <code>cargo run</code>.</p>
+<blockquote>
+<p>Note that in order for CXX-Qt to work, the <code>qmake</code> executable must be located. This is because CXX-Qt relies on <code>qmake</code> to locate the necessary Qt libraries and header files on your system.</p>
+<p><code>cxx-qt</code> will find qmake in the following order:</p>
+<ul>
+<li>Look for an environment variable <code>QMAKE</code> that should have the path to <code>qmake</code>.<br />
+e.g.: <code>QMAKE=/usr/bin/qmake cargo run</code></li>
+<li>Use <code>qmake</code> from the <code>PATH</code>. If multiple <code>qmake</code> exists in <code>PATH</code>, environment variable <code>QT_VERSION_MAJOR</code> will control the selected one.</li>
+</ul>
+<p>To check which version of Qt will be used with <code>qmake</code>, you can use the <code>qmake -query</code> command. This will display information about the Qt installation, including the version number and installation path.</p>
+<p>Check <a href="https://docs.rs/cxx-qt-build/latest/cxx_qt_build/struct.CxxQtBuilder.html">CxxQtBuilder</a> for more information</p>
+</blockquote>
+<p>If this fails for any reason, take a look at the <a href="https://github.com/KDAB/cxx-qt/tree/main/examples/cargo_without_cmake"><code>examples/cargo-without-cmake</code></a> folder in the CXX-Qt repository, which contains the complete example code.</p>
+<p>If you have cloned the CXX-Qt repository, you can run this example from within the repository using:</p>
+<pre><code class="language-shell">cargo run -p qml-minimal-no-cmake
+</code></pre>
+<p>You should now see the two Labels that display the state of our <code>MyObject</code>, as well as the two buttons to call our two Rust functions.</p>
+<h2 id="success-"><a class="header" href="#success-">Success 🥳</a></h2>
+<p>For further reading, you can take a look at the <a href="getting-started/../bridge/index.html">bridge chapter</a> which goes into detail about all features that CXX-Qt exposes to new QObject subclasses.
+As well as the <a href="getting-started/../concepts/index.html">Concepts chapter</a>, which explains the concepts underlying CXX-Qt.</p>
+<p>In the next, optional chapter, we will show how to build the same QML application with CMake.</p>
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2022 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Leon Matthes <leon.matthes@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="building-with-cmake"><a class="header" href="#building-with-cmake">Building with CMake</a></h1>
+<p>In this example, we will demonstrate how to integrate CXX-Qt code into a C++ application using CMake.
+Cargo builds the CXX-Qt code as a static library, then CMake links it into a C++ executable.</p>
+<blockquote>
+<p>If you don't want to use CMake, and only want to use Cargo to build your project, refer to the  <a href="getting-started/./4-cargo-executable.html">previous section</a>.</p>
+</blockquote>
+<p>We'll first want to modify our project structure to separate the different parts of our project.</p>
+<pre><code class="language-ignore">tutorial
+  - cpp
+  - qml
+  - rust
+</code></pre>
+<p>Move the rust project into the <code>rust</code> folder.
+Pull out the <code>qml</code> folder back to the top level.</p>
+<h2 id="c-executable"><a class="header" href="#c-executable">C++ executable</a></h2>
+<p>To start our QML application, we'll need a small <code>main.cpp</code> file with an ordinary <code>main</code> function. Puts this in a <code>cpp</code> folder to clearly separate the C++ and Rust code:</p>
+<pre><code class="language-cpp ignore">#include &lt;QtGui/QGuiApplication&gt;
+#include &lt;QtQml/QQmlApplicationEngine&gt;
+
+int
+main(int argc, char* argv[])
+{
+  QGuiApplication app(argc, argv);
+
+  QQmlApplicationEngine engine;
+
+  const QUrl url(
+    QStringLiteral(&quot;qrc:/qt/qml/com/kdab/cxx_qt/demo/qml/main.qml&quot;));
+  QObject::connect(
+    &amp;engine,
+    &amp;QQmlApplicationEngine::objectCreated,
+    &amp;app,
+    [url](QObject* obj, const QUrl&amp; objUrl) {
+      if (!obj &amp;&amp; url == objUrl)
+        QCoreApplication::exit(-1);
+    },
+    Qt::QueuedConnection);
+
+  engine.load(url);
+
+  return app.exec();
+}
+</code></pre>
+<p>You can add as much C++ code as you want in addition to this.</p>
+<h2 id="using-rust-qobjects-in-c"><a class="header" href="#using-rust-qobjects-in-c">Using Rust QObjects in C++</a></h2>
+<p>For every <code>#[cxx_qt::bridge]</code> that we define in Rust, CXX-Qt will generate a corresponding C++ header file.
+They will always be in the <code>cxx-qt-gen/</code> include path and use the snake_case naming convention.
+The name of the header file will be the name of the Rust module of your <code>#[cxx_qt::bridge]</code>, followed by <code>.cxxqt.h</code>.
+So in our case: <code>#include cxx-qt-gen/qobject.cxxqt.h</code></p>
+<blockquote>
+<p>Note that the <a href="getting-started/../bridge/index.html#cxx_file_stem"><code>cxx_file_stem</code></a> option can be specified in the bridge macro to choose the file name.</p>
+</blockquote>
+<p>Including the generated header allows accessing the <code>MyObject</code> C++ class, just like any other C++ class.
+Inherit from it, connect signals and slots to it, put it in a QVector, do whatever you want with it.
+That's the power of CXX-Qt.</p>
+<h2 id="cargo-setup-1"><a class="header" href="#cargo-setup-1">Cargo setup</a></h2>
+<p>Before we can get started on building Qt with CMake, we first need to make our Cargo build ready for it.
+If you've generated your project with the <code>cargo new --lib</code> or <code>cargo init --lib [folder]</code> command, your <code>Cargo.toml</code> should look something like this:</p>
+<pre><code class="language-toml ignore">[package]
+name = &quot;qml-minimal&quot;
+version = &quot;0.1.0&quot;
+edition = &quot;2021&quot;
+
+[dependencies]
+</code></pre>
+<p>We'll have to do multiple things:</p>
+<ul>
+<li>Instruct cargo to create a static library</li>
+<li>Add <code>cxx</code>, <code>cxx-qt</code>, as well as <code>cxx-qt-lib</code> as dependencies</li>
+<li>Add <code>cxx-qt-build</code> as a build dependency</li>
+</ul>
+<blockquote>
+<p>If you've already followed the Cargo setup, most of this should already be done.
+Make sure to change the <code>crate-type</code> to <code>&quot;staticlib&quot;</code> though!</p>
+</blockquote>
+<p>In the end, your <code>Cargo.toml</code> should look similar to this.</p>
+<pre><code class="language-toml ignore">[package]
+name = &quot;qml-minimal&quot;
+version = &quot;0.1.0&quot;
+authors = [
+  &quot;Andrew Hayzen &lt;andrew.hayzen@kdab.com&gt;&quot;,
+  &quot;Gerhard de Clercq &lt;gerhard.declercq@kdab.com&gt;&quot;,
+  &quot;Leon Matthes &lt;leon.matthes@kdab.com&gt;&quot;
+]
+edition = &quot;2021&quot;
+license = &quot;MIT OR Apache-2.0&quot;
+
+# This will instruct Cargo to create a static
+# library which CMake can link against
+[lib]
+crate-type = [&quot;staticlib&quot;]
+
+[dependencies]
+cxx = &quot;1.0.95&quot;
+cxx-qt = &quot;0.6&quot;
+cxx-qt-lib = &quot;0.6&quot;
+
+# cxx-qt-build generates C++ code from the `#[cxx_qt::bridge]` module
+# and compiles it together with the Rust static library
+[build-dependencies]
+cxx-qt-build = &quot;0.6&quot;
+
+[features]
+# This feature must be enabled for `cargo test` when linking Qt 6 statically.
+link_qt_object_files = [ &quot;cxx-qt-build/link_qt_object_files&quot; ]
+</code></pre>
+<p>We'll then also need to add a script named <code>build.rs</code> next to the <code>Cargo.toml</code>:</p>
+<blockquote>
+<p>If you've already followed the Cargo build tutorial, simply modify the existing <code>build.rs</code> file.</p>
+</blockquote>
+<pre><code class="language-rust ignore">use cxx_qt_build::{CxxQtBuilder, QmlModule};
+
+fn main() {
+    CxxQtBuilder::new()
+        .qml_module(QmlModule {
+            uri: &quot;com.kdab.cxx_qt.demo&quot;,
+            rust_files: &amp;[&quot;src/cxxqt_object.rs&quot;],
+            qml_files: &amp;[&quot;../qml/main.qml&quot;],
+            ..Default::default()
+        })
+        .build();
+}</code></pre>
+<p>This is what generates and compiles the C++ code for our <code>MyObject</code> class at build time.</p>
+<p>Every Rust source file that uses the <code>#[cxx_qt::bridge]</code> macro need to be included in this script.
+In our case, this is only the <code>src/cxxqt_object.rs</code> file.</p>
+<p>This is also where the QML module is defined with a QML uri and version.
+The files and resources in the module are then exposed in the same way as the <a href="https://doc.qt.io/qt-6/qt-add-qml-module.html">qt_add_qml_module CMake function</a>.</p>
+<blockquote>
+<p>Note that in order for CXX-Qt to work, the <code>qmake</code> executable must be located. This is because CXX-Qt relies on <code>qmake</code> to locate the necessary Qt libraries and header files on your system.</p>
+<p>This will be done in the <code>CMakeLists.txt</code> file by setting the <code>QMAKE</code> environment variable from CMake.
+This ensures that CMake and Cargo use the same Qt binaries.</p>
+</blockquote>
+<p>We'll also need to remove the <code>src/main.rs</code> and replace it with a <code>src/lib.rs</code> file.
+This file only needs to include a single line:</p>
+<pre><code class="language-rust ignore">pub mod cxxqt_object;</code></pre>
+<p>This simply ensures that our rust module is included in our library.</p>
+<p>Feel free to add additional rust modules in your library as well.</p>
+<h2 id="cmake-setup"><a class="header" href="#cmake-setup">CMake setup</a></h2>
+<p>Now add a <code>CMakeLists.txt</code> file in the root of your project folder.
+Start the <code>CMakeLists.txt</code> file like any other C++ project using Qt.
+For this example, we are <a href="https://doc.qt.io/qt-6/cmake-qt5-and-qt6-compatibility.html">supporting both Qt5 and Qt6 with CMake</a>:</p>
+<pre><code class="language-cmake ignore">cmake_minimum_required(VERSION 3.24)
+
+project(example_qml_minimal)
+set(APP_NAME ${PROJECT_NAME})
+
+# Rust always links against non-debug Windows runtime on *-msvc targets
+# Note it is best to set this on the command line to ensure all targets are consistent
+# https://github.com/corrosion-rs/corrosion/blob/master/doc/src/common_issues.md#linking-debug-cc-libraries-into-rust-fails-on-windows-msvc-targets
+# https://github.com/rust-lang/rust/issues/39016
+if (CMAKE_CXX_COMPILER_ID STREQUAL &quot;MSVC&quot;)
+  set(CMAKE_MSVC_RUNTIME_LIBRARY &quot;MultiThreadedDLL&quot;)
+endif()
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+if(NOT USE_QT5)
+    find_package(Qt6 COMPONENTS Core Gui Qml QuickControls2 QmlImportScanner)
+endif()
+if(NOT Qt6_FOUND)
+    find_package(Qt5 5.15 COMPONENTS Core Gui Qml QuickControls2 QmlImportScanner REQUIRED)
+endif()
+</code></pre>
+<p>Locate <a href="https://github.com/corrosion-rs/corrosion">Corrosion</a>, a tool for integrating Rust libraries into CMake.
+If Corrosion is not installed, automatically download it:</p>
+<pre><code class="language-cmake ignore">find_package(Corrosion QUIET)
+if(NOT Corrosion_FOUND)
+    include(FetchContent)
+    FetchContent_Declare(
+        Corrosion
+        GIT_REPOSITORY https://github.com/corrosion-rs/corrosion.git
+        GIT_TAG v0.4.2
+    )
+
+    FetchContent_MakeAvailable(Corrosion)
+endif()
+</code></pre>
+<p>To ensure that cxx-qt-build uses the same version of Qt as your CMake targets, use the <code>Qt</code> CMake target to locate the qmake executable. Then, pass <code>qmake</code> executable path to <code>build.rs</code> with the environment variable <code>QMAKE</code> using <code>corrosion_set_env_vars</code>.</p>
+<pre><code class="language-cmake ignore"># The path to the qmake executable path needs to be passed to the Rust
+# library's build script to ensure it uses the same installation of Qt as CMake.
+get_target_property(QMAKE Qt::qmake IMPORTED_LOCATION)
+</code></pre>
+<p>Use Corrosion to create a CMake library target for the Rust library. CXX-Qt requires a few more steps beyond using
+a typical Rust library with Corrosion:</p>
+<pre><code class="language-cmake ignore">set(CRATE qml-minimal)
+# Corrosion creates a CMake target with the same name as the crate.
+corrosion_import_crate(MANIFEST_PATH rust/Cargo.toml CRATES ${CRATE})
+
+# The Rust library's build script needs to be told where to output the
+# generated headers so CMake can find them. To do this, tell Corrosion
+# to set the CXXQT_EXPORT_DIR environment variable when calling `cargo build`.
+# Also, set the QMAKE environment variable to ensure the Rust library uses
+# the same installation of Qt as CMake.
+set(CXXQT_EXPORT_DIR &quot;${CMAKE_CURRENT_BINARY_DIR}/cxxqt&quot;)
+corrosion_set_env_vars(${CRATE}
+    &quot;CXXQT_EXPORT_DIR=${CXXQT_EXPORT_DIR}&quot;
+    &quot;QMAKE=${QMAKE}&quot;
+)
+
+# Create an INTERFACE library target to link libraries to and add include paths.
+# Linking this to both the application and the tests avoids having to setup
+# the include paths and linked libraries for both of those.
+add_library(${APP_NAME}_lib INTERFACE)
+
+# Include the headers generated by the Rust library's build script. Each
+# crate gets its own subdirectory under CXXQT_EXPORT_DIR. This allows you
+# to include headers generated by multiple crates without risk of one crate
+# overwriting another's files.
+target_include_directories(${APP_NAME}_lib INTERFACE &quot;${CXXQT_EXPORT_DIR}/${CRATE}&quot;)
+
+target_link_libraries(${APP_NAME}_lib INTERFACE
+    # WHOLE_ARCHIVE is needed for the generated QML plugin to register on startup,
+    # otherwise the linker will discard the static variables that initialize it.
+    &quot;$&lt;LINK_LIBRARY:WHOLE_ARCHIVE,${CRATE}-static&gt;&quot;
+    Qt::Core
+    Qt::Gui
+    Qt::Qml
+    Qt::QuickControls2
+)
+</code></pre>
+<p>Finally, create the CMake executable target and link it to the Rust library:</p>
+<pre><code class="language-cmake ignore"># Define the executable with the C++ source
+add_executable(${APP_NAME} cpp/main.cpp)
+
+# Link to the Rust library
+target_link_libraries(${APP_NAME} PRIVATE ${APP_NAME}_lib)
+
+# If we are using a statically linked Qt then we need to import any qml plugins
+qt_import_qml_plugins(${APP_NAME})
+</code></pre>
+<p>Your project should now have a structure similar to this:</p>
+<pre><code class="language-console  ignore">$ tree -I target/ -I tests
+.
+├── CMakeLists.txt
+├── cpp
+│   └── main.cpp
+├── qml
+│   └── main.qml
+└── rust
+    ├── build.rs
+    ├── Cargo.toml
+    └── src
+        ├── cxxqt_object.rs
+        └── lib.rs
+
+5 directories, 7 files
+</code></pre>
+<p>Build the project like any other CMake project:</p>
+<pre><code class="language-shell">$ cmake -S . -B build
+$ cmake --build build
+</code></pre>
+<p>If this fails for any reason, take a look at the <a href="https://github.com/KDAB/cxx-qt/tree/main/examples/qml_minimal"><code>examples/qml_minimal</code></a> folder, which contains the complete example code.</p>
+<p>This should now configure and compile our project.
+If this was successful, you can now run our little project.</p>
+<pre><code class="language-shell">$ build/examples/qml_minimal/example_qml_minimal
+</code></pre>
+<p>You should now see the two Labels that display the state of our <code>MyObject</code>, as well as the two buttons to call our two Rust functions.</p>
+<h3 id="windows-with-msvc"><a class="header" href="#windows-with-msvc">Windows with MSVC</a></h3>
+<p>If you're building CXX-Qt on Windows using MSVC generator, you need to ensure that <code>set(CMAKE_MSVC_RUNTIME_LIBRARY &quot;MultiThreadedDLL&quot;)</code> is set in CMake (or use the <code>-DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreadedDLL</code> flag) when building with the <code>Debug</code> configuration. This flag is necessary to ensure that the correct C Runtime Library is used. Then you can build using <code>cmake --build build --config Debug</code>.</p>
+<p>This issue is caused by a bug in the <a href="https://docs.rs/cc/latest/cc/index.html">cc</a> crate (as described in https://github.com/rust-lang/cc-rs/pull/717), which has not been merged yet. Specifically, the problem is that cc generated code always links to the MultiThreaded runtime, even when building in Debug mode. We hope that this step won't be necessary in the future, once the cc crate fix is merged and released.</p>
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2021 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Andrew Hayzen <andrew.hayzen@kdab.com>
+SPDX-FileContributor: Leon Matthes <leon.matthes@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="core-concepts"><a class="header" href="#core-concepts">Core Concepts</a></h1>
+<p>CXX-Qt uses <a href="https://cxx.rs/">CXX</a> for bridging between C++ and Rust in a safe way.</p>
+<p>The main purpose of CXX-Qt is to expose Qt's extensions to the C++ language to CXX.</p>
+<blockquote>
+<p>Note that the Rust QObject of a constructed Qt object is owned by the C++ side of the bridge representing it. So when the C++ object is destroyed the Rust object will be destroyed.</p>
+</blockquote>
+<ul>
+<li><a href="concepts/./types.html">Supported types between Rust and C++</a></li>
+<li><a href="concepts/./build_systems.html">Build Systems</a></li>
+<li><a href="concepts/./generated_qobject.html">Generated QObject</a></li>
+<li><a href="concepts/./nested_objects.html">Nesting Rust objects</a></li>
+<li><a href="concepts/./inheritance.html">Inheriting QObjects and overriding methods</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2022 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Andrew Hayzen <andrew.hayzen@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="build-systems"><a class="header" href="#build-systems">Build Systems</a></h1>
+<p>CXX-Qt can be integrated into existing CMake projects or built with only cargo. The getting started guide provides documentation on how to setup your project:</p>
+<ul>
+<li><a href="concepts/../getting-started/4-cargo-executable.html">Cargo Integration</a></li>
+<li><a href="concepts/../getting-started/5-cmake-integration.html">CMake Integration</a></li>
+</ul>
+<p>CXX-Qt could work with any C++ build system so long as the <code>QMAKE</code> and <code>CXXQT_EXPORT_DIR</code> environment variables are set before calling Cargo,
+as documented in <a href="concepts/../getting-started/5-cmake-integration.html">CMake integration</a>. However, using C++ build systems besides CMake with CXX-Qt is untested.</p>
+<h2 id="cxxqtbuilder"><a class="header" href="#cxxqtbuilder">CxxQtBuilder</a></h2>
+<p>With both build systems a build script (<code>build.rs</code>) file needs to be used,
+so that CXX-Qt knows which files to look for bridges and to build a Qt C++ library for linking later.</p>
+<p>See <a href="https://docs.rs/cxx-qt-build/latest/cxx_qt_build/struct.CxxQtBuilder.html"><code>CxxQtBuilder</code> documentation</a> for more details.</p>
+<h2 id="qml-modules"><a class="header" href="#qml-modules">QML Modules</a></h2>
+<p>When using QML with CXX-Qt <a href="https://doc.qt.io/qt-6/qtqml-writing-a-module.html">QML modules</a> can be output.
+This allows for attributes such as <code>#[qml_element]</code> to register the QObject with the QML type system without any C++ code.</p>
+<p>See <a href="https://docs.rs/cxx-qt-build/latest/cxx_qt_build/struct.QmlModule.html"><code>QmlModule</code> documentation</a> for more details.</p>
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2022 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Andrew Hayzen <andrew.hayzen@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="the-generated-qobject"><a class="header" href="#the-generated-qobject">The generated QObject</a></h1>
+<p>One of the key features of CXX-Qt is the ability to create your own QObjects from Rust.
+This is what the <a href="concepts/../bridge/extern_rustqt.html#qobjects"><code>#[qobject]</code> macro</a> is for.
+This page serves to document the details of what is generated and how to interact with the generated QObject from Rust.</p>
+<p>The <code>#[qobject]</code> macro generates a QObject for a type alias to a Rust struct.
+Whilst this QObject is a C++ type, CXX-Qt will automatically wrap it as a <a href="https://cxx.rs/extern-c++.html#opaque-c-types">CXX Opaque Type</a>.</p>
+<blockquote>
+<p>If the bridge module is named <code>qobject</code>, then the C++ type can be reached via <code>qobject::T</code></p>
+</blockquote>
+<h2 id="anatomy"><a class="header" href="#anatomy">Anatomy</a></h2>
+<p>Any QObject generated by CXX-Qt is just a C++ QObject subclass that owns an instance of the Rust struct.</p>
+<p>By default the instance of the Rust struct is constructed using the <a href="https://doc.rust-lang.org/std/default/trait.Default.html"><code>Default</code></a> trait.
+If the Rust struct cannot implement <code>Default</code>, providing a custom constructor with the <a href="https://docs.rs/cxx-qt/latest/cxx_qt/trait.Constructor.html"><code>Constructor</code> trait</a> is required.</p>
+<p>The C++ object will defer any state to the Rust struct, and is therefore only a thin wrapper.</p>
+<blockquote>
+<p>See <a href="concepts/../bridge/extern_rustqt.html"><code>extern &quot;RustQt&quot;</code></a> for details on implementing properties, invokables, and signals.</p>
+</blockquote>
+<blockquote>
+<p>See <a href="concepts/./nested_objects.html">nested objects</a> for referencing another QObject.</p>
+</blockquote>
+<h2 id="c-context"><a class="header" href="#c-context">C++ context</a></h2>
+<p>When implementing methods in the C++ context (eg for invokables) these need to be implemented on the type defined in the bridge.</p>
+<p>For example if the bridge module was called <code>qobject</code> and the type was called <code>T</code> an impl block would be written as <code>impl qobject::T { ... }</code>.</p>
+<blockquote>
+<p>Methods from traits, such as <a href="https://docs.rs/cxx-qt/latest/cxx_qt/trait.Threading.html">Threading</a>, are available in the C++ context</p>
+</blockquote>
+<blockquote>
+<p>From a C++ context the Rust context can be reach by using methods on the <a href="https://docs.rs/cxx-qt/latest/cxx_qt/trait.CxxQtType.html">CxxQtType</a> trait</p>
+</blockquote>
+<h2 id="rust-context"><a class="header" href="#rust-context">Rust context</a></h2>
+<p>The only requirement for the Rust struct is that it has a <code>Default</code> or that the QObject implements <a href="https://docs.rs/cxx-qt/latest/cxx_qt/trait.Constructor.html">cxx_qt::Constructor</a>.</p>
+<p>Otherwise the Rust struct can be used in the same way as any normal Rust struct.</p>
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2021 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Andrew Hayzen <andrew.hayzen@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="types-1"><a class="header" href="#types-1">Types</a></h1>
+<p>CXX-Qt supports most types supported by CXX. These can be used in properties, invokables, and signals.</p>
+<h2 id="cxx-qt-lib-types"><a class="header" href="#cxx-qt-lib-types"><code>cxx-qt-lib</code> Types</a></h2>
+<p>The <code>cxx-qt-lib</code> crate provides CXX bindings for common Qt types.</p>
+<p>Use the <a href="https://docs.rs/cxx-qt-lib/latest/cxx_qt_lib/"><code>cxx-qt-lib</code> Docs</a> to explore the available types.</p>
+<h3 id="container-types"><a class="header" href="#container-types">Container Types</a></h3>
+<p>The <code>cxx-qt-lib</code> crate has containers types, such as <code>QSet&lt;T&gt;</code>.</p>
+<p>To use these define a templated type in the CXX bridge, but note that the type
+name must be <code>QSet_T</code> as this needs to match the name in C++ code.</p>
+<p>So for <code>QSet&lt;i32&gt;</code> the type name should be <code>QSet_i32</code>.</p>
+<pre><code class="language-rust ignore">    unsafe extern &quot;C++&quot; {
+        include!(&quot;cxx-qt-lib/qset.h&quot;);
+        type QSet_i32 = cxx_qt_lib::QSet&lt;i32&gt;;
+    }</code></pre>
+<p>To use key-value based container types such as <code>QHash&lt;K, V&gt;</code> an intermediate type on the Rust side
+is defined to implement a trait on the key-value combination.</p>
+<p>As with other container types, the type name must be <code>QHash_K_V</code> as this needs
+to match the name in the C++ code.</p>
+<p>So for <code>QHash&lt;QString, QVariant&gt;</code>, define an intermediate type called <code>QHashPair_QString_QVariant</code>.
+Then the type name <code>QHash_QString_QVariant</code> is used to match the C++ side.</p>
+<pre><code class="language-rust ignore">    unsafe extern &quot;C++&quot; {
+        include!(&quot;cxx-qt-lib/qhash.h&quot;);
+        type QHash_QString_QVariant = cxx_qt_lib::QHash&lt;cxx_qt_lib::QHashPair_QString_QVariant&gt;;
+    }</code></pre>
+<p>Note that type alias such as <code>QVariantMap</code> can be used by using the matching type in Rust such as <code>QMap&lt;QString, QVariant&gt;</code>.</p>
+<h2 id="defining-a-custom-type"><a class="header" href="#defining-a-custom-type">Defining a Custom Type</a></h2>
+<p>Any types that are valid CXX types should be usable with CXX-Qt as well.</p>
+<p>Note that the same rules apply as CXX, so a type must be <a href="https://cxx.rs/extern-c++.html?highlight=trivial#integrating-with-bindgen-generated-or-handwritten-unsafe-bindings">trivial</a> to pass by value.
+If they are opaque, references or pointers must be used.</p>
+<p>For examples of how to wrap Qt objects, explore the <a href="https://github.com/KDAB/cxx-qt/tree/main/crates/cxx-qt-lib"><code>cxx-qt-lib</code> source code</a>.</p>
+<h3 id="using-a-custom-type-with-containers-or-qvariant"><a class="header" href="#using-a-custom-type-with-containers-or-qvariant">Using a Custom Type with Containers or QVariant</a></h3>
+<p>To use a custom type with containers find the trait that the container uses, eg for <code>QSet&lt;T&gt;</code> there is a <code>QSetElement</code> trait and for <code>QHash&lt;K, V&gt;</code> there is a <code>QHashPair</code> trait.</p>
+<p>Implement the trait for your custom type and then you can use the containers as described above.</p>
+<p>To use a custom type with <code>QVariant</code> implement the <code>QVariantValue</code> trait for your custom type, as seen below, then it can be used as normal.</p>
+<pre><code class="language-rust ignore">impl cxx_qt_lib::QVariantValue for ffi::CustomStruct {
+    fn can_convert(variant: &amp;cxx_qt_lib::QVariant) -&gt; bool {
+        ffi::qvariant_can_convert_custom_type(variant)
+    }
+
+    fn construct(value: &amp;Self) -&gt; cxx_qt_lib::QVariant {
+        ffi::qvariant_construct_custom_type(value)
+    }
+
+    fn value_or_default(variant: &amp;cxx_qt_lib::QVariant) -&gt; Self {
+        ffi::qvariant_value_or_default_custom_type(variant)
+    }
+}</code></pre>
+<p>A full example of implementing a custom struct with <code>QVariant</code> is shown in the <a href="https://github.com/KDAB/cxx-qt/blob/main/examples/qml_features/rust/src/types.rs">qml_features types example</a>.</p>
+<p>Also any custom types or alias in C++ should be registered with Qt using <code>qRegisterMetaType&lt;T&gt;(&quot;TYPE&quot;)</code> to ensure that they work with QML.</p>
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2022 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Andrew Hayzen <andrew.hayzen@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="nested-objects"><a class="header" href="#nested-objects">Nested Objects</a></h1>
+<p>Rust Qt objects can be nested as properties or parameters of each other.</p>
+<p>A nested object is referred to by using a pointer to its QObject representation.</p>
+<p>First define a type within an extern block for your bridge as normal.</p>
+<pre><code class="language-rust ignore noplayground">    extern &quot;RustQt&quot; {
+        #[qobject]
+        #[qml_element]
+        #[qproperty(i32, counter)]
+        type InnerObject = super::InnerObjectRust;
+    }</code></pre>
+<p>This can then be used as a property, invokable parameter, or signal parameter by using <code>*mut T</code>. As seen in the example below which nests <code>InnerObject</code> into <code>OuterObject</code>.</p>
+<blockquote>
+<p>The C++ CXX type needs to be used as the <code>T</code> type not the Rust struct</p>
+</blockquote>
+<blockquote>
+<p>To reach mutable invokables and property setters of the nested object
+<code>*mut T</code> needs to be converted to <code>Pin&lt;&amp;mut T&gt;</code>.</p>
+</blockquote>
+<pre><code class="language-rust ignore noplayground">#[cxx_qt::bridge(cxx_file_stem = &quot;nested_qobjects&quot;)]
+pub mod qobject {
+    extern &quot;RustQt&quot; {
+        #[qobject]
+        #[qml_element]
+        #[qproperty(i32, counter)]
+        type InnerObject = super::InnerObjectRust;
+    }
+
+    extern &quot;RustQt&quot; {
+        /// A signal showing how to refer to another QObject as an argument
+        ///
+        /// # Safety
+        ///
+        /// Due to a raw pointer this is considered unsafe in CXX
+        #[qsignal]
+        unsafe fn called(self: Pin&lt;&amp;mut InnerObject&gt;, inner: *mut InnerObject);
+    }
+
+    extern &quot;RustQt&quot; {
+        #[qobject]
+        #[qml_element]
+        #[qproperty(*mut InnerObject, inner)]
+        type OuterObject = super::OuterObjectRust;
+
+        /// A signal showing how to refer to another QObject as an argument
+        ///
+        /// # Safety
+        ///
+        /// Due to a raw pointer this is considered unsafe in CXX
+        #[qsignal]
+        unsafe fn called(self: Pin&lt;&amp;mut OuterObject&gt;, inner: *mut InnerObject);
+    }
+
+    unsafe extern &quot;RustQt&quot; {
+        /// Print the count of the given inner QObject
+        #[qinvokable]
+        unsafe fn print_count(self: Pin&lt;&amp;mut OuterObject&gt;, inner: *mut InnerObject);
+
+        /// Reset the counter of the inner QObject stored in the Q_PROPERTY
+        #[qinvokable]
+        fn reset(self: Pin&lt;&amp;mut OuterObject&gt;);
+    }
+
+    impl cxx_qt::Constructor&lt;()&gt; for OuterObject {}
+}
+
+use core::pin::Pin;
+
+/// The inner QObject
+#[derive(Default)]
+pub struct InnerObjectRust {
+    counter: i32,
+}
+
+/// The outer QObject which has a Q_PROPERTY pointing to the inner QObject
+pub struct OuterObjectRust {
+    inner: *mut qobject::InnerObject,
+}
+
+impl Default for OuterObjectRust {
+    fn default() -&gt; Self {
+        Self {
+            inner: std::ptr::null_mut(),
+        }
+    }
+}
+
+impl qobject::OuterObject {
+    /// Print the count of the given inner QObject
+    ///
+    /// # Safety
+    ///
+    /// As we deref a pointer in a public method this needs to be marked as unsafe
+    pub unsafe fn print_count(self: Pin&lt;&amp;mut Self&gt;, inner: *mut qobject::InnerObject) {
+        if let Some(inner) = inner.as_ref() {
+            println!(&quot;Inner object's counter property: {}&quot;, inner.counter());
+        }
+
+        self.called(inner);
+    }
+
+    /// Reset the counter of the inner QObject stored in the Q_PROPERTY
+    pub fn reset(self: Pin&lt;&amp;mut Self&gt;) {
+        // We need to convert the *mut T to a Pin&lt;&amp;mut T&gt; so that we can reach the methods
+        if let Some(inner) = unsafe { self.inner().as_mut() } {
+            let pinned_inner = unsafe { Pin::new_unchecked(inner) };
+            // Now pinned inner can be used as normal
+            pinned_inner.set_counter(10);
+        }
+
+        // Retrieve *mut T
+        let inner = *self.inner();
+        unsafe { self.called(inner) };
+    }
+}
+
+impl cxx_qt::Initialize for qobject::OuterObject {
+    /// Initialize the QObject, creating a connection from one signal to another
+    fn initialize(self: core::pin::Pin&lt;&amp;mut Self&gt;) {
+        // Example of connecting a signal from one QObject to another QObject
+        // this causes OuterObject::Called to trigger InnerObject::Called
+        self.on_called(|qobject, obj| {
+            // We need to convert the *mut T to a Pin&lt;&amp;mut T&gt; so that we can reach the methods
+            if let Some(inner) = unsafe { qobject.inner().as_mut() } {
+                let pinned_inner = unsafe { Pin::new_unchecked(inner) };
+                // Now pinned inner can be used as normal
+                unsafe {
+                    pinned_inner.called(obj);
+                }
+            }
+        })
+        .release();
+    }
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2023 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Leon Matthes <leon.matthes@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="inheritance"><a class="header" href="#inheritance">Inheritance</a></h1>
+<p>Some Qt APIs require you to override certain methods from an abstract base class, for example <a href="https://doc.qt.io/qt-6/qabstractitemmodel.html">QAbstractItemModel</a>.</p>
+<p>To support creating such subclasses directly from within Rust, CXX-Qt provides you with multiple helpers.</p>
+<p>Some superclasses may require special parameters for construction.
+This can be achieved by using a <a href="https://docs.rs/cxx-qt/latest/cxx_qt/trait.Constructor.html">custom constructor</a>.</p>
+<h2 id="accessing-base-class-methods"><a class="header" href="#accessing-base-class-methods">Accessing base class methods</a></h2>
+<p>To access the methods of a base class in Rust, use the <code>#[inherit]</code> macro.
+It can be placed in front of a function in a <code>extern &quot;RustQt&quot;</code> block in a <code>#[cxx_qt::bridge]</code>.</p>
+<pre><code class="language-rust ignore">    extern &quot;RustQt&quot; {
+        #[qobject]
+        #[base = &quot;QAbstractListModel&quot;]
+        #[qml_element]
+        #[qproperty(State, state)]
+        type CustomBaseClass = super::CustomBaseClassRust;
+    }
+
+    // Create Rust bindings for C++ functions of the base class (QAbstractItemModel)
+    extern &quot;RustQt&quot; {
+        /// Inherited beginInsertRows from the base class
+        #[inherit]
+        unsafe fn begin_insert_rows(
+            self: Pin&lt;&amp;mut CustomBaseClass&gt;,
+            parent: &amp;QModelIndex,
+            first: i32,
+            last: i32,
+        );
+        /// Inherited endInsertRows from the base class
+        #[inherit]
+        unsafe fn end_insert_rows(self: Pin&lt;&amp;mut CustomBaseClass&gt;);
+
+        /// Inherited beginRemoveRows from the base class
+        #[inherit]
+        unsafe fn begin_remove_rows(
+            self: Pin&lt;&amp;mut CustomBaseClass&gt;,
+            parent: &amp;QModelIndex,
+            first: i32,
+            last: i32,
+        );
+        /// Inherited endRemoveRows from the base class
+        #[inherit]
+        unsafe fn end_remove_rows(self: Pin&lt;&amp;mut CustomBaseClass&gt;);
+
+        /// Inherited beginResetModel from the base class
+        #[inherit]
+        unsafe fn begin_reset_model(self: Pin&lt;&amp;mut CustomBaseClass&gt;);
+        /// Inherited endResetModel from the base class
+        #[inherit]
+        unsafe fn end_reset_model(self: Pin&lt;&amp;mut CustomBaseClass&gt;);
+    }
+
+    unsafe extern &quot;RustQt&quot; {
+        /// Clear the rows in the QAbstractListModel
+        #[qinvokable]
+        pub fn clear(self: Pin&lt;&amp;mut CustomBaseClass&gt;);
+    }</code></pre>
+<pre><code class="language-rust ignore">impl qobject::CustomBaseClass {
+    /// Clear the rows in the QAbstractListModel
+    pub fn clear(mut self: Pin&lt;&amp;mut Self&gt;) {
+        unsafe {
+            self.as_mut().begin_reset_model();
+            self.as_mut().rust_mut().id = 0;
+            self.as_mut().rust_mut().vector.clear();
+            self.as_mut().end_reset_model();
+        }
+    }
+}</code></pre>
+<p><a href="https://github.com/KDAB/cxx-qt/blob/main/examples/qml_features/rust/src/custom_base_class.rs">Full example</a></p>
+<p>This code implements a QAbstractListModel subclass.
+For this, the <code>clear</code> method implemented in Rust needs to call <code>beginResetModel</code> and related methods from the base class, which are made accessible by using <code>#[inherit]</code>.
+See <a href="https://doc.qt.io/qt-6/qabstractlistmodel.html">the Qt docs</a> for more details on the specific subclassing requirements.</p>
+<p>Methods in a <code>extern &quot;RustQt&quot;</code> block similar to CXX can be tagged with an <code>#[inherit]</code> attribute, with the same restrictions regarding which types can be used.
+Additionally, the <code>self</code> type must be either <code>self: Pin&lt;&amp;mut qobject::T&gt;</code> or <code>self: &amp;qobject::T</code>, where <code>qobject::T</code> must refer to a QObject marked with <code>#[qobject]</code> in the <code>#[cxx_qt::bridge]</code></p>
+<p>The declared methods will be case-converted as in other CXX-Qt APIs.
+To explicitly declare the C++ method name, use the <code>#[cxx_name = &quot;myFunctionName&quot;]</code> attribute.</p>
+<blockquote>
+<p><code>#[inherit]</code> can also be used on signals that exist on the base class in an <a href="concepts/../bridge/extern_rustqt.html#signals"><code>extern RustQt</code> block</a></p>
+</blockquote>
+<h2 id="overriding-base-class-methods"><a class="header" href="#overriding-base-class-methods">Overriding base class methods</a></h2>
+<p>CXX-Qt allows invokables to be generated with the C++ modifiers necessary to implement inheritance.
+This way methods can be overridden, declared as <code>virtual</code> or <code>final</code>.</p>
+<div class="table-wrapper"><table><thead><tr><th>C++ keyword</th><th>CXX-Qt attribute</th></tr></thead><tbody>
+<tr><td><code>override</code></td><td><code>#[cxx_override]</code></td></tr>
+<tr><td><code>virtual</code></td><td><code>#[cxx_virtual]</code></td></tr>
+<tr><td><code>final</code></td><td><code>#[cxx_final]</code></td></tr>
+</tbody></table>
+</div>
+<p>The example below overrides the <a href="https://doc.qt.io/qt-6/qabstractitemmodel.html#data"><code>data</code></a> method inherited from the QAbstractListModel.</p>
+<pre><code class="language-rust ignore">    extern &quot;RustQt&quot; {
+        #[qobject]
+        #[base = &quot;QAbstractListModel&quot;]
+        #[qml_element]
+        #[qproperty(State, state)]
+        type CustomBaseClass = super::CustomBaseClassRust;
+    }
+
+    unsafe extern &quot;RustQt&quot; {
+        #[qinvokable]
+        #[cxx_override]
+        fn data(self: &amp;CustomBaseClass, index: &amp;QModelIndex, role: i32) -&gt; QVariant;
+    }</code></pre>
+<pre><code class="language-rust ignore">impl qobject::CustomBaseClass {
+    /// Retrieve the data for a given index and role
+    pub fn data(&amp;self, index: &amp;QModelIndex, role: i32) -&gt; QVariant {
+        let role = qobject::Roles { repr: role };
+        if let Some((id, value)) = self.vector.get(index.row() as usize) {
+            return match role {
+                qobject::Roles::Id =&gt; QVariant::from(id),
+                qobject::Roles::Value =&gt; QVariant::from(value),
+                _ =&gt; QVariant::default(),
+            };
+        }
+
+        QVariant::default()
+    }
+}</code></pre>
+<p><a href="https://github.com/KDAB/cxx-qt/blob/main/examples/qml_features/rust/src/custom_base_class.rs">Full example</a></p>
+<p>When a method is overridden using <code>cxx_override</code>, the base class version of the method can be accessed by using <code>#[inherit]</code> in combination with the <code>#[cxx_name]</code> attribute.
+In this case the base class version of the function must get a different name because Rust can't have two functions with the same name on one type.</p>
+<p>Example:</p>
+<pre><code class="language-rust ignore">    extern &quot;RustQt&quot; {
+        #[qobject]
+        #[base = &quot;QAbstractListModel&quot;]
+        #[qml_element]
+        #[qproperty(State, state)]
+        type CustomBaseClass = super::CustomBaseClassRust;
+    }
+
+    unsafe extern &quot;RustQt&quot; {
+        /// Inherited canFetchMore from the base class
+        #[cxx_name = &quot;canFetchMore&quot;]
+        #[inherit]
+        fn base_can_fetch_more(self: &amp;CustomBaseClass, parent: &amp;QModelIndex) -&gt; bool;
+
+        /// Inherited index from the base class
+        #[inherit]
+        fn index(
+            self: &amp;CustomBaseClass,
+            row: i32,
+            column: i32,
+            parent: &amp;QModelIndex,
+        ) -&gt; QModelIndex;
+    }
+
+    unsafe extern &quot;RustQt&quot; {
+        /// Return whether the base class can fetch more
+        // Example of overriding a C++ virtual method and calling the base class implementation.
+        #[qinvokable]
+        #[cxx_override]
+        fn can_fetch_more(self: &amp;CustomBaseClass, parent: &amp;QModelIndex) -&gt; bool;
+    }</code></pre>
+<pre><code class="language-rust ignore">impl qobject::CustomBaseClass {
+    /// Return whether the base class can fetch more
+    // Example of overriding a C++ virtual method and calling the base class implementation.
+    pub fn can_fetch_more(&amp;self, parent: &amp;QModelIndex) -&gt; bool {
+        self.base_can_fetch_more(parent)
+    }
+}</code></pre>
+<p><a href="https://github.com/KDAB/cxx-qt/blob/main/examples/qml_features/rust/src/custom_base_class.rs">Full example</a></p>
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2023 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Andrew Hayzen <andrew.hayzen@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="the-bridge-module-reference"><a class="header" href="#the-bridge-module-reference">The bridge module reference</a></h1>
+<ul>
+<li><a href="bridge/./extern_rustqt.html">extern &quot;RustQt&quot;</a> - exposing Rust types to Qt as QObject, Q_SIGNAL, Q_PROPERTY etc</li>
+<li><a href="bridge/./extern_cppqt.html">extern &quot;C++Qt&quot;</a> - binding Qt features and types to Rust, such as QObject, Q_SIGNAL etc</li>
+<li><a href="bridge/./shared_types.html">Shared types</a> - shared enums between Rust and Qt, such as Q_ENUM, Q_ENUM_NS etc</li>
+<li><a href="bridge/./attributes.html">Attributes</a> - working with namespaces, giving functions different names</li>
+<li><a href="bridge/./traits.html">Traits</a> - traits related to a CXX-Qt QObject</li>
+</ul>
+<p>The <code>#[cxx_qt::bridge]</code> macro functions very similarly to <a href="https://docs.rs/cxx/latest/cxx/attr.bridge.html"><code>#[cxx::bridge]</code></a>. This macro needs to be written above a Rust module definition.</p>
+<p>This Rust module will then function like a normal CXX bridge, whilst also supporting the additional features added by CXX-Qt. Refer to the <a href="https://cxx.rs/">the CXX documentation</a> for details on how to describe the language boundary.</p>
+<blockquote>
+<p>Don't forget to add the Rust source file to the CxxQtBuilder in your build.rs script. For instructions, see the <a href="bridge/../getting-started/5-cmake-integration.html">Getting Started guide</a>.</p>
+</blockquote>
+<p>The <code>#[cxx_qt::bridge]</code> macro supports two options in it's attribute</p>
+<ul>
+<li><a href="bridge/index.html#cxx_file_stem"><code>cxx_file_stem</code></a></li>
+<li><a href="bridge/./attributes.html#namespace"><code>namespace</code></a></li>
+</ul>
+<h2 id="cxx_file_stem"><a class="header" href="#cxx_file_stem">cxx_file_stem</a></h2>
+<p>By default, the name of the generated C++ header file will be the name of the module, followed by <code>.cxxqt.h</code> (and <code>.cxx.h</code> for CXX files).</p>
+<p>This can cause issues as the module is normally called <code>ffi</code> or <code>qobject</code> so collisions would occur.</p>
+<p>The <code>cxx_file_stem</code> option allow a file name to be specified to avoid collisions.</p>
+<pre><code class="language-rust ignore">#[cxx_qt::bridge(cxx_file_stem = &quot;types&quot;)]
+pub mod ffi {</code></pre>
+<blockquote>
+<p>Currently, cxx-qt-gen writes all generated header files into a single folder.
+Therefore you need to be careful to not produce two header files with the same filename.</p>
+</blockquote>
+<blockquote>
+<p>We want to use the name of the Rust source file that the macro is located in (the same as CXX).
+However this requires <a href="https://github.com/rust-lang/rust/issues/54725">inspection APIs from <code>proc_macro::Span</code></a>
+which is currently a nightly feature.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2023 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Andrew Hayzen <andrew.hayzen@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="extern-rustqt-1"><a class="header" href="#extern-rustqt-1">extern &quot;RustQt&quot;</a></h1>
+<ul>
+<li><a href="bridge/extern_rustqt.html#qobjects">QObjects</a></li>
+<li><a href="bridge/extern_rustqt.html#properties">Properties</a></li>
+<li><a href="bridge/extern_rustqt.html#methods">Methods</a></li>
+<li><a href="bridge/extern_rustqt.html#signals">Signals</a></li>
+</ul>
+<pre><code class="language-rust ignore noplayground">#[cxx_qt::bridge]
+mod ffi {
+    extern &quot;RustQt&quot; {
+
+    }
+}</code></pre>
+<p>The <code>extern &quot;RustQt&quot;</code> section of a CXX bridge declares Rust types and signatures to be made available to Qt and C++.</p>
+<p>The CXX code generator uses your <code>extern &quot;Rust&quot;</code> section(s) to produce a C++ header file containing the corresponding C++ declarations. The generated header has a file name matching the module ident or the <code>cxx_file_stem</code> field in the <code>#[cxx_qt::bridge]</code> attribute and with a <code>.cxxqt.h</code> file extension.</p>
+<p>A bridge module may contain zero or more <code>extern &quot;RustQt&quot;</code> blocks.</p>
+<p>This complements the <a href="https://cxx.rs/extern-rust.html"><code>extern &quot;Rust&quot;</code> CXX section</a>
+but allows for declaring Qt specific features on C++ types.</p>
+<h2 id="qobjects"><a class="header" href="#qobjects">QObjects</a></h2>
+<p>Types specified with a <code>#[qobject]</code> attribute are generated in C++ as a <a href="https://doc.qt.io/qt-6/qobject.html"><code>QObject</code></a>.</p>
+<p>The left side of the type specifies the C++ generated type and name, when referring to the C++ context this should be used. The right side of the type specifies which Rust type provides the inner implementation of the type (for example fields ).</p>
+<pre><code class="language-rust ignore noplayground">#[cxx_qt::bridge]
+mod ffi {
+    extern &quot;RustQt&quot; {
+        #[qobject]
+        type MyObject = super::MyObjectRust;
+    }
+}
+
+#[derive(Default)]
+struct MyObjectRust;</code></pre>
+<h3 id="qml-attributes"><a class="header" href="#qml-attributes">QML Attributes</a></h3>
+<p>QObjects can be registered as a QML type directly at build time by using the <a href="https://doc.qt.io/qt-6/qqmlengine.html#QML_ELEMENT"><code>#[qml_element]</code></a> attribute.</p>
+<pre><code class="language-rust ignore noplayground">    unsafe extern &quot;RustQt&quot; {
+        // The QObject definition
+        // We tell CXX-Qt that we want a QObject class with the name MyObject
+        // based on the Rust struct MyObjectRust.
+        #[qobject]
+        #[qml_element]
+        #[qproperty(i32, number)]
+        #[qproperty(QString, string)]
+        type MyObject = super::MyObjectRust;
+    }</code></pre>
+<p>Additionally, you can configure the QML registration with these attributes:</p>
+<!--
+TODO: we need to add https://doc.qt.io/qt-6/qqmlengine.html#QML_ANONYMOUS
+TODO: we need to add https://doc.qt.io/qt-6/qqmlengine.html#QML_INTERFACE
+-->
+<ul>
+<li><a href="https://doc.qt.io/qt-6/qqmlengine.html#QML_NAMED_ELEMENT"><code>qml_name</code></a>: Use a different type name for QML.</li>
+<li><a href="https://doc.qt.io/qt-6/qqmlengine.html#QML_UNCREATABLE"><code>qml_uncreatable</code></a>: Mark the type as uncreatable from QML. It may still be returned by C++/Rust code.</li>
+<li><a href="https://doc.qt.io/qt-6/qqmlengine.html#QML_SINGLETON"><code>qml_singleton</code></a>: An instance of the QObject will be instantiated as a singleton in QML.</li>
+</ul>
+<blockquote>
+<p>The Rust file must be included within a <a href="bridge/../concepts/build_systems.html#qml-modules">QML module in the <code>build.rs</code> file</a></p>
+</blockquote>
+<h3 id="base-attribute"><a class="header" href="#base-attribute"><code>base</code> attribute</a></h3>
+<p>Use the <code>base</code> attribute to specify a C++ class that the C++ QObject will inherit from.
+The base class must inherit from QObject (directly or indirectly). If you do not specify a base attribute, it will inherit directly from QObject.</p>
+<pre><code class="language-rust ignore noplayground">    extern &quot;RustQt&quot; {
+        #[qobject]
+        #[base = &quot;QAbstractListModel&quot;]
+        #[qml_element]
+        #[qproperty(State, state)]
+        type CustomBaseClass = super::CustomBaseClassRust;
+    }</code></pre>
+<p>Use the CXX <code>include!</code> macro to include the appropriate C++ header for the base class:</p>
+<pre><code class="language-rust ignore noplayground">    unsafe extern &quot;C++&quot; {
+        include!(&lt;QtCore/QAbstractListModel&gt;);
+    }</code></pre>
+<p>For more information on inheritance and how to override methods see the <a href="bridge/../concepts/inheritance.html">Inheritance &amp; Overriding</a> page.</p>
+<p><a href="https://github.com/KDAB/cxx-qt/blob/main/examples/qml_features/rust/src/custom_base_class.rs">Full Example</a></p>
+<h3 id="traits"><a class="header" href="#traits">Traits</a></h3>
+<p>The <a href="https://doc.rust-lang.org/std/default/trait.Default.html"><code>Default</code> trait</a> needs to be implemented for the <code>#[qobject]</code> marked struct either by hand or by using the derive macro <code>#[derive(Default)]</code>. Or the <a href="https://docs.rs/cxx-qt/latest/cxx_qt/trait.Constructor.html"><code>cxx_qt::Constructor</code></a> trait needs to be implemented for the type.</p>
+<p>For further documentation see the <a href="bridge/./traits.html">traits page</a>.</p>
+<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
+<p>The <code>#[qproperty(TYPE, NAME, ...)]</code> attribute can be specified on a <a href="bridge/extern_rustqt.html#qobjects"><code>#[qobject]</code> marked type</a> to expose a <a href="https://doc.qt.io/qt-6/properties.html"><code>Q_PROPERTY</code></a> on the generated QObject.</p>
+<pre><code class="language-rust ignore noplayground">        #[qobject]
+        #[qml_element]
+        #[qproperty(bool, connected)]
+        #[qproperty(QUrl, connected_url)]
+        #[qproperty(QUrl, previous_connected_url)]
+        #[qproperty(QString, status_message)]
+        type RustProperties = super::RustPropertiesRust;</code></pre>
+<p>The type and name of the</p>
+<pre><code class="language-rust ignore noplayground">/// A QObject which has Q_PROPERTYs
+pub struct RustPropertiesRust {
+    /// A connected Q_PROPERTY
+    connected: bool,
+
+    /// A connected_url Q_PROPERTY
+    pub(crate) connected_url: QUrl,
+
+    /// A previous_connected_url Q_PROPERTY
+    previous_connected_url: QUrl,
+
+    /// A status_message Q_PROPERTY
+    status_message: QString,
+}</code></pre>
+<p>For every <code>#[qproperty]</code>, CXX-Qt will generate setters and getters, as well as a &quot;changed&quot; signal.</p>
+<p>On the C++ side:</p>
+<ul>
+<li>setter: <code>set&lt;Property&gt;</code></li>
+<li>getter: <code>get&lt;Property&gt;</code></li>
+<li>changed: <code>&lt;Property&gt;Changed</code></li>
+</ul>
+<p>On the Rust side:</p>
+<ul>
+<li>setter: <code>set_&lt;Property&gt;</code></li>
+<li>getter: <code>&lt;Property&gt;</code></li>
+<li>changed: <code>&lt;Property&gt;_changed</code></li>
+</ul>
+<p>Also the generated Rust methods for <a href="bridge/extern_rustqt.html#signals">signals</a></p>
+<ul>
+<li>connect: <code>connect_&lt;Property&gt;_changed</code></li>
+<li>on: <code>on_&lt;Property&gt;_changed</code></li>
+</ul>
+<p>Where <code>&lt;Property&gt;</code> is the name of the property.</p>
+<p>These setters and getters assure that the changed signal is emitted every time the property is edited.</p>
+<blockquote>
+<p>Note that in the future it will be possible to specify custom getters and setters</p>
+</blockquote>
+<h2 id="methods"><a class="header" href="#methods">Methods</a></h2>
+<p>Any signature with a <code>self</code> parameter is interpreted as a Rust method and exposed to C++ method for the given type.
+The type much be either a shared reference <code>self: &amp;T</code> or a pinned mutable reference <code>self: Pin&lt;&amp;mut T&gt;</code>, where <code>T</code> is the <a href="bridge/extern_rustqt.html#qobjects">QObject</a> type.</p>
+<pre><code class="language-rust ignore noplayground">    unsafe extern &quot;RustQt&quot; {
+        /// C++ only method which returns the red value
+        fn red_value(self: &amp;RustInvokables) -&gt; f32;
+    }</code></pre>
+<p>Implementations of the method are then written as normal on the C++ type outside the bridge.</p>
+<pre><code class="language-rust ignore noplayground">impl qobject::RustInvokables {
+    /// C++ only method which returns the red value
+    pub fn red_value(&amp;self) -&gt; f32 {
+        self.red
+    }
+}</code></pre>
+<blockquote>
+<p>Note how this uses <code>impl qobject::T</code> rather than <code>impl T</code> where <code>qobject</code> is the bridge module name.</p>
+</blockquote>
+<h3 id="invokables-1"><a class="header" href="#invokables-1">Invokables</a></h3>
+<p>The <code>#[qinvokable]</code> attribute can be specified on signatures to expose them as a <a href="https://doc.qt.io/qt-6/qobject.html#Q_INVOKABLE"><code>Q_INVOKABLE</code></a> in C++.</p>
+<pre><code class="language-rust ignore noplayground">    unsafe extern &quot;RustQt&quot; {
+        /// Immutable invokable method that returns the QColor
+        #[qinvokable]
+        fn load_color(self: &amp;RustInvokables) -&gt; Result&lt;QColor&gt;;
+
+        /// Mutable invokable method that stores a color
+        #[qinvokable]
+        fn store_color(self: Pin&lt;&amp;mut RustInvokables&gt;, red: f32, green: f32, blue: f32);
+
+        /// Mutable invokable method that stores a color with an enum
+        #[qinvokable]
+        fn store_color_with_enum(self: Pin&lt;&amp;mut RustInvokables&gt;, color: Color);
+
+        /// Mutable invokable method with no parameters that resets the color
+        #[qinvokable]
+        fn reset(self: Pin&lt;&amp;mut RustInvokables&gt;);
+    }</code></pre>
+<p>Implementations then have no difference to non invokable methods.</p>
+<pre><code class="language-rust ignore noplayground">impl qobject::RustInvokables {
+    /// Immutable invokable method that returns the QColor
+    pub fn load_color(&amp;self) -&gt; Result&lt;QColor, i32&gt; {
+        Ok(self.as_qcolor())
+    }
+
+    /// Mutable invokable method that stores a color
+    pub fn store_color(self: Pin&lt;&amp;mut Self&gt;, red: f32, green: f32, blue: f32) {
+        self.store_helper(red, green, blue);
+    }
+
+    /// QENUMS!
+    pub fn store_color_with_enum(self: Pin&lt;&amp;mut Self&gt;, color: qobject::Color) {
+        use qobject::Color;
+        let (r, g, b) = match color {
+            Color::Red =&gt; (1.0, 0.0, 0.0),
+            Color::Green =&gt; (0.0, 1.0, 0.0),
+            Color::Blue =&gt; (0.0, 0.0, 1.0),
+            _ =&gt; (0.0, 0.0, 0.0),
+        };
+        self.store_helper(r, g, b);
+    }
+
+    /// Mutable invokable method with no parameters that resets the color
+    pub fn reset(self: Pin&lt;&amp;mut Self&gt;) {
+        self.store_helper(0.0, 0.4667, 0.7843);
+    }
+}</code></pre>
+<h3 id="inheritance-1"><a class="header" href="#inheritance-1">Inheritance</a></h3>
+<p>Methods or signals that already exist on the base class of an object can be accessed via the <code>#[inherit]</code> attribute.</p>
+<p>For documentation see the <a href="bridge/../concepts/inheritance.html">inheritance</a> page.</p>
+<h3 id="specifiers"><a class="header" href="#specifiers">Specifiers</a></h3>
+<p>Generated methods can have C++ specifiers necessary to implement inheritance.</p>
+<div class="table-wrapper"><table><thead><tr><th>C++ keyword</th><th>CXX-Qt attribute</th></tr></thead><tbody>
+<tr><td><code>override</code></td><td><code>#[cxx_override]</code></td></tr>
+<tr><td><code>virtual</code></td><td><code>#[cxx_virtual]</code></td></tr>
+<tr><td><code>final</code></td><td><code>#[cxx_final]</code></td></tr>
+</tbody></table>
+</div>
+<p>These are specified as an attribute on the method signature.</p>
+<pre><code class="language-rust ignore">    unsafe extern &quot;RustQt&quot; {
+        #[qinvokable]
+        #[cxx_override]
+        fn data(self: &amp;CustomBaseClass, index: &amp;QModelIndex, role: i32) -&gt; QVariant;
+    }</code></pre>
+<h2 id="signals"><a class="header" href="#signals">Signals</a></h2>
+<p>The <code>qsignal</code> attribute is used in an <code>extern &quot;RustQt&quot;</code> block to define <a href="https://doc.qt.io/qt-6/signalsandslots.html">signals</a> for the a QObject.</p>
+<pre><code class="language-rust ignore noplayground">    unsafe extern &quot;RustQt&quot; {
+        /// A Q_SIGNAL emitted when a connection occurs
+        #[qsignal]
+        fn connected(self: Pin&lt;&amp;mut RustSignals&gt;, url: &amp;QUrl);
+
+        /// A Q_SIGNAL emitted when a disconnect occurs
+        #[qsignal]
+        fn disconnected(self: Pin&lt;&amp;mut RustSignals&gt;);
+
+        /// A Q_SIGNAL emitted when an error occurs
+        #[qsignal]
+        fn error(self: Pin&lt;&amp;mut RustSignals&gt;, message: QString);
+    }</code></pre>
+<p>For every function signature in the extern block, CXX-Qt will generate a signal on the corresponding QObject.
+If the function has parameters, they will become the parameters for the corresponding signal.</p>
+<p>If a signal is defined on the base class of the QObject then <code>#[inherit]</code> can be used to indicate to CXX-Qt that the <code>Q_SIGNAL</code> does not need to be created in C++.</p>
+<p>A full example can be found in the <a href="https://github.com/KDAB/cxx-qt/blob/main/examples/qml_features/rust/src/signals.rs">qml features</a>.</p>
+<blockquote>
+<p>Note that <code>#[cxx_name = &quot;...&quot;]</code> can also be used on a signal to declare a different name in C++ to Rust</p>
+</blockquote>
+<blockquote>
+<p>Note using <code>pub(self)</code> as the visibility of the signal
+allows for declaring private signals</p>
+</blockquote>
+<h3 id="connecting-to-a-signal"><a class="header" href="#connecting-to-a-signal">Connecting to a signal</a></h3>
+<p>For every signal defined in the enum, two methods are generated.</p>
+<ol>
+<li><code>on_&lt;signal_name&gt;</code></li>
+<li><code>connect_&lt;signal_name&gt;</code></li>
+</ol>
+<p>The <code>on_&lt;signal_name&gt;</code> method takes a handler function as the parameter, which will be called when the signal is emitted.
+That handler function's first argument is the qobject and the remaining arguments are the signal parameters.</p>
+<p>The <code>connect_&lt;signal_name&gt;</code> function additionally takes the <a href="https://doc.qt.io/qt-6/qt.html#ConnectionType-enum">Qt connection type</a> as a parameter.</p>
+<p>Note that by using the <code>#[inherit]</code> macro on a signal, connections can be made to property changes
+using the signal name <code>&lt;property&gt;Changed</code> with no parameters.</p>
+<pre><code class="language-rust ignore noplayground">                    let connections = [
+                        qobject.as_mut().on_connected(|_, url| {
+                            println!(&quot;Connected: {}&quot;, url);
+                        }),
+                        qobject.as_mut().on_disconnected(|_| {
+                            println!(&quot;Disconnected&quot;);
+                        }),
+                        // Demonstration of connecting with a different connection type
+                        qobject.as_mut().connect_error(
+                            |_, message| {
+                                println!(&quot;Error: {}&quot;, message);
+                            },
+                            ConnectionType::QueuedConnection,
+                        ),
+                    ];
+                    qobject.as_mut().rust_mut().connections = Some(connections);</code></pre>
+<p>Each connection returns a <a href="https://doc.qt.io/qt-6/qmetaobject-connection.html"><code>QMetaObject::Connection</code></a> which is used to manage the connection.</p>
+<p>Note that the <code>QMetaObjectConnection</code> returned by CXX-Qt behaves a bit different from the Qt C++ implementation.</p>
+<p>When the <code>QMetaObjectConnection</code> is dropped, it automatically disconnects the connection, similar to how a C++ <code>std::unique_ptr</code> or Rusts <code>Box</code> behaves.
+If you don't want to store the QMetaObjectConnection, call <code>release</code>, which will drop the object without disconnecting.
+In this case, it is no longer possible to disconnect later.</p>
+<pre><code class="language-rust ignore noplayground">                // By making connections None, we trigger a drop on the connections
+                // this then causes disconnections
+                qobject.as_mut().rust_mut().connections = None;</code></pre>
+<h3 id="emitting-a-signal"><a class="header" href="#emitting-a-signal">Emitting a signal</a></h3>
+<p>Call the function signature defined in the <code>extern &quot;RustQt&quot;</code> block to emit the signal.</p>
+<p>Note that these are defined on the generated QObject <a href="bridge/../concepts/generated_qobject.html"><code>qobject::T</code></a>, so can be called from any mutable <code>#[qinvokable]</code>.</p>
+<p>The function will immediately emit the signal.
+Depending on the connection type, the connected slots will be called either immediately or from the event loop (See <a href="https://doc.qt.io/qt-6/qt.html#ConnectionType-enum">the different connection types</a>).
+To queue the call until the next cycle of the Qt event loop, you can use the <a href="https://docs.rs/cxx-qt/latest/cxx_qt/struct.CxxQtThread.html"><code>CxxQtThread</code></a>.</p>
+<h3 id="inheritance-2"><a class="header" href="#inheritance-2">Inheritance</a></h3>
+<p>If a signal is defined on the base class of the QObject then the <code>#[inherit]</code> attribute can be used to indicate to CXX-Qt that the <code>Q_SIGNAL</code> does not need to be created in C++.</p>
+<pre><code class="language-rust ignore noplayground">    unsafe extern &quot;RustQt&quot; {
+        /// Inherit the DataChanged signal from the QAbstractListModel base class
+        #[inherit]
+        #[qsignal]
+        fn data_changed(
+            self: Pin&lt;&amp;mut CustomBaseClass&gt;,
+            top_left: &amp;QModelIndex,
+            bottom_right: &amp;QModelIndex,
+            roles: &amp;QVector_i32,
+        );
+    }</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2023 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Andrew Hayzen <andrew.hayzen@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="extern-cqt"><a class="header" href="#extern-cqt">extern &quot;C++Qt&quot;</a></h1>
+<ul>
+<li><a href="bridge/extern_cppqt.html#qobjects">QObjects</a></li>
+<li><a href="bridge/extern_cppqt.html#methods">Methods</a></li>
+<li><a href="bridge/extern_cppqt.html#signals">Signals</a></li>
+</ul>
+<pre><code class="language-rust ignore noplayground">#[cxx_qt::bridge]
+mod ffi {
+    extern &quot;C++Qt&quot; {
+
+    }
+}</code></pre>
+<p>The <code>extern &quot;C++Qt&quot;</code> section of a CXX-Qt bridge declares Qt types and signatures to be made available to Rust,
+and gives the paths of the headers which contain the corresponding Qt declarations.</p>
+<p>A bridge module may contain zero or more <code>extern &quot;C++Qt&quot;</code> blocks.</p>
+<p>This complements the <a href="https://cxx.rs/extern-c++.html"><code>extern &quot;C++&quot;</code> CXX section</a>
+but allows for declaring Qt specific features on C++ types.</p>
+<h2 id="qobjects-1"><a class="header" href="#qobjects-1">QObjects</a></h2>
+<p>Types defined in C++ that are made available to Rust, but only behind an indirection.</p>
+<p>This is the same as <a href="https://cxx.rs/extern-c++.html#opaque-c-types">CXX Opaque C++ types</a>.</p>
+<pre><code class="language-rust ignore noplayground">#[cxx_qt::bridge]
+mod ffi {
+    extern &quot;C++Qt&quot; {
+        include!(&lt;QtWidgets/QPushButton&gt;);
+        type QPushButton;
+    }
+}</code></pre>
+<!--
+TODO: use a real example from qml_features once closure support lands
+-->
+<h2 id="methods-1"><a class="header" href="#methods-1">Methods</a></h2>
+<p>Methods can be specified on the Qt type in the same way as <a href="bridge/./extern_rustqt.html#methods"><code>extern &quot;RustQt&quot;</code> blocks</a>.</p>
+<p>This is the same as <a href="https://cxx.rs/extern-c++.html#functions-and-member-functions">CXX Functions and member functions</a>.</p>
+<pre><code class="language-rust ignore noplayground">#[cxx_qt::bridge]
+mod ffi {
+    unsafe extern &quot;C++&quot; {
+        include!(&quot;cxx-qt-lib/qstring.h&quot;);
+        type QString = cxx_qt_lib::QString;
+    }
+
+    extern &quot;C++Qt&quot; {
+        include!(&lt;QtWidgets/QPushButton&gt;);
+        type QPushButton;
+
+        fn text(self: &amp;QPushButton) -&gt; QString;
+        fn setText(self: Pin&lt;&amp;mut QPushButton&gt;, text: &amp;QString);
+    }
+}</code></pre>
+<!--
+TODO: use a real example from qml_features once closure support lands
+-->
+<h2 id="signals-1"><a class="header" href="#signals-1">Signals</a></h2>
+<p>Signals can be specified on the Qt type in the same way as <a href="bridge/./extern_rustqt.html#signals"><code>extern &quot;RustQt&quot;</code> blocks</a>.</p>
+<pre><code class="language-rust ignore noplayground">#[cxx_qt::bridge]
+mod ffi {
+    extern &quot;C++Qt&quot; {
+        include!(&lt;QtWidgets/QPushButton&gt;);
+        type QPushButton;
+
+        #[qsignal]
+        fn clicked(self: Pin&lt;&amp;mut QPushButton&gt;, checked: bool);
+    }
+}</code></pre>
+<p>This then causes CXX-Qt to generate Rust methods to connect to the <code>#[qsignal]</code> with a closure,
+in the same way as a <code>#[qsignal]</code> in a <a href="bridge/./extern_rustqt.html#signals"><code>extern &quot;RustQt&quot;</code> block</a>.</p>
+<blockquote>
+<p>Note using <code>pub(self)</code> as the visibility of the signal
+allows for declaring private signals</p>
+</blockquote>
+<!--
+TODO: use a real example from qml_features once closure support lands
+-->
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2023 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Andrew Hayzen <andrew.hayzen@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="shared-types"><a class="header" href="#shared-types">Shared types</a></h1>
+<h2 id="qenum---support-for-q_enum-and-q_enum_ns"><a class="header" href="#qenum---support-for-q_enum-and-q_enum_ns"><code>#[qenum]</code> - Support for Q_ENUM and Q_ENUM_NS</a></h2>
+<p>Qt allows exposing enums to Qt's meta-object system, and thereby QML, with a set of macros:</p>
+<ul>
+<li><a href="https://doc.qt.io/qt-6/qobject.html#Q_ENUM">Q_ENUM</a> is used to expose an enum that is a member of a <a href="bridge/../concepts/generated_qobject.html">QObject</a></li>
+<li><a href="https://doc.qt.io/qt-6/qobject.html#Q_ENUM_NS">Q_ENUM_NS</a> is used to expose an enum that is in a namespace to the meta-object system.</li>
+</ul>
+<p>CXX-Qt has support for both of these macros through the <code>#[qenum]</code> attribute.</p>
+<h2 id="qobject-class-enum-q_enum"><a class="header" href="#qobject-class-enum-q_enum">QObject class enum (<code>Q_ENUM</code>)</a></h2>
+<p>CXX-Qt relies on CXX to expose enums from Rust to C++ and vice-versa.
+However, CXX only supports free enums that are not defined as part of a class.
+CXX-Qt doesn't change this, it only additionally exposes the enum as part of a QObject type to the meta-object system.
+So any <code>#[qenum]</code> in CXX-Qt is available as both a normal shared CXX enum, as well as a Q_ENUM inside the associated QObject.</p>
+<p>To expose a <a href="https://cxx.rs/shared.html#shared-structs-and-enums">shared CXX enum</a> as a <a href="https://doc.qt.io/qt-6/qobject.html#Q_ENUM"><code>Q_ENUM</code></a> inside a QObject class, add the <code>#[qenum(...)]</code> attribute to the enum definition in CXX.
+The argument to <code>#[qenum(...)]</code> must be the name of a <code>#[qobject]</code> that is defined in a <code>extern &quot;RustQt&quot;</code> block.</p>
+<p>It is currently not possible to add a <code>#[qenum(...)]</code> to any <code>extern &quot;C++Qt&quot;</code> QObjects or a QObject that is defined in another <code>#[cxx_qt::bridge]</code>.</p>
+<p>Example:</p>
+<pre><code class="language-rust ignore noplayground">#[cxx_qt::bridge(cxx_file_stem=&quot;custom_base_class&quot;)]
+pub mod qobject {
+    #[qenum(CustomBaseClass)]
+    /// State of the CustomBaseClass list model
+    enum State {
+        /// Another item is being added in the background
+        Running,
+        /// No items are being added in the background
+        Idle,
+    }
+
+    extern &quot;RustQt&quot; {
+        #[qobject]
+        #[base = &quot;QAbstractListModel&quot;]
+        #[qml_element]
+        #[qproperty(State, state)]
+        type CustomBaseClass = super::CustomBaseClassRust;
+    }
+}</code></pre>
+<h3 id="registering-the-enum-with-qml"><a class="header" href="#registering-the-enum-with-qml">Registering the enum with QML</a></h3>
+<p>Note that Qt provides access to enum variants through the name of the class it is registered with, not the enum name itself.
+A side-effect of this behavior is that the enum itself doesn't have to be registered with QML.
+Only the QObject class has to be registered.
+In the previous example, the <code>#[qml_element]</code> attribute on the <code>#[qobject]</code> takes care of the registration.</p>
+<p>Usage from QML:</p>
+<pre><code class="language-qml">    BusyIndicator {
+        anchors {
+            right: scrollView.right
+            bottom: scrollView.bottom
+            margins: 15
+        }
+        running: customBaseClass.state === CustomBaseClass.Running
+    }
+</code></pre>
+<h2 id="namespaced-enum-q_enum_ns"><a class="header" href="#namespaced-enum-q_enum_ns">Namespaced enum (<code>Q_ENUM_NS</code>)</a></h2>
+<p>If there is no class that the enum should be associated with, Qt still allows exposing the enum to the meta-object system, as long as it is inside a namespace.</p>
+<p>If there is a namespace associated with a <a href="https://cxx.rs/shared.html#shared-structs-and-enums">shared CXX enum</a> simply add the <code>#[qenum]</code> attribute and CXX-Qt will expose it using <a href="https://doc.qt.io/qt-6/qobject.html#Q_ENUM_NS"><code>Q_ENUM_NS</code></a>.</p>
+<p>Note that the namespace doesn't have to be specified on the enum directly, the enum can inherit the namespace from the surrounding bridge.
+This follows normal <a href="https://cxx.rs/attributes.html#namespace">CXX namespacing rules</a>.</p>
+<p>Example:</p>
+<pre><code class="language-rust ignore noplayground">#[cxx_qt::bridge]
+pub mod qobject {
+    #[qenum]
+    #[namespace = &quot;Colors&quot;]
+    /// An enum of colors
+    enum Color {
+        /// Red
+        Red,
+        /// Green
+        Green,
+        /// Blue
+        Blue,
+    }
+}</code></pre>
+<p>Unfortunately, an important Qt limitation also applies to CXX-Qt.
+Namely, for any given namespace, there must be at most <strong>one</strong> bridge that exposes <code>#[qenum]</code> enums through that namespace.
+One bridge may expose enums through multiple namespaces however.</p>
+<h3 id="registering-the-enum-with-qml-1"><a class="header" href="#registering-the-enum-with-qml-1">Registering the enum with QML</a></h3>
+<p>Whilst <code>Q_ENUM_NS</code> creates the appropriate meta-objects, it doesn't add them to QML automatically.
+Like with <code>Q_ENUM</code>, access to the enum variants also doesn't happen through the enum directly, but rather the surrounding namespace.</p>
+<p>Therefore, the namespace must be registered with the meta-object system and then exposed to QML.
+CXX-Qt automatically registers the namespace of a namespaced <code>#[qenum]</code> with the meta-object system.</p>
+<p>Registration with QML can then be done by placing a <code>qnamespace!(&quot;...&quot;)</code> macro inside the bridge that defines the namespaced <code>#[qenum]</code> and adding a <code>#[qml_element]</code> attribute.</p>
+<pre><code class="language-rust ignore noplayground">#[cxx_qt::bridge]
+pub mod qobject {
+    #[qml_element]
+    qnamespace!(&quot;Colors&quot;);
+
+    #[qenum]
+    #[namespace = &quot;Colors&quot;]
+    /// An enum of colors
+    enum Color {
+        /// Red
+        Red,
+        /// Green
+        Green,
+        /// Blue
+        Blue,
+    }
+}</code></pre>
+<p>Usage from QML:</p>
+<pre><code class="language-qml">            ToolButton {
+                text: qsTr(&quot;Red&quot;)
+                onClicked: rustInvokables.storeColorWithEnum(Colors.Red);
+            }
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2023 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Andrew Hayzen <andrew.hayzen@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="attributes"><a class="header" href="#attributes">Attributes</a></h1>
+<h2 id="namespace"><a class="header" href="#namespace">namespace</a></h2>
+<p>The C++ namespace which to emit <code>extern &quot;RustQt&quot;</code> items and the namespace to find <code>extern &quot;C++Qt&quot;</code> items.</p>
+<p>An item will inherit the namespace specified on it's surrounding <code>extern</code> block if any,
+otherwise the namespace specified with the top level <code>cxx_qt::bridge</code> attribute, if any, will be used.</p>
+<pre><code class="language-rust ignore noplayground">#[cxx_qt::bridge(cxx_file_stem = &quot;threading_website&quot;, namespace = &quot;cxx_qt::website&quot;)]
+pub mod qobject {</code></pre>
+<blockquote>
+<p>Note that <code>#[namespace = &quot;...&quot;]</code> may not work on all items,
+we hope to improve this in future this support in the future.</p>
+</blockquote>
+<h2 id="cxx_name-and-rust_name"><a class="header" href="#cxx_name-and-rust_name">cxx_name and rust_name</a></h2>
+<p>The <code>#[cxx_name = &quot;...&quot;]</code> attribute replaces the name that C++ should use for this item.</p>
+<p>The <code>#[rust_name = &quot;...&quot;]</code> attribute replaces the name that Rust should use for this item.</p>
+<blockquote>
+<p>Note that <code>#[cxx_name = &quot;...&quot;]</code> and <code>#[rust_name = &quot;...&quot;]</code> may not work on all items,
+we hope to improve this in future this support in the future.</p>
+</blockquote>
+<p>If no <code>#[cxx_name = &quot;...&quot;]</code> or <code>#[rust_name = &quot;...&quot;]</code> is specified, CXX-Qt will perform an automatic conversion to function names as specified in the table below.</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Rust</th><th>C++</th></tr></thead><tbody>
+<tr><td><code>extern &quot;C++Qt&quot;</code></td><td>-</td><td>camelCase</td></tr>
+<tr><td><code>extern &quot;RustQt&quot;</code></td><td>-</td><td>camelCase</td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p>Note that in some cases <code>snake_case</code> conversions may occur for generated functions in Rust (eg <code>on_&lt;signal&gt;</code>).</p>
+</blockquote>
+<blockquote>
+<p>Note that this table may change to the following conversions in the future.</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Rust</th><th>C++</th></tr></thead><tbody>
+<tr><td><code>extern &quot;C++Qt&quot;</code></td><td>snake_case</td><td>-</td></tr>
+<tr><td><code>extern &quot;RustQt&quot;</code></td><td>-</td><td>camelCase</td></tr>
+</tbody></table>
+</div></blockquote>
+<div style="break-before: page; page-break-before: always;"></div><!--
+SPDX-FileCopyrightText: 2023 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Andrew Hayzen <andrew.hayzen@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="traits-1"><a class="header" href="#traits-1">Traits</a></h1>
+<p>Traits can be implemented (or in some cases negated) inside the <a href="bridge/../bridge/index.html"><code>#[cxx_qt::bridge]</code></a>
+in a similar way to <a href="https://cxx.rs/extern-c++.html#explicit-shim-trait-impls">explicit shim trait impls</a> in CXX.</p>
+<p>Except instead of the <code>T</code> being a generic it is the struct the trait is implemented for.
+This is because some of the traits themselves require generics.</p>
+<pre><code class="language-rust ignore">impl UniquePtr&lt;A&gt; {} // explicit CXX trait implementation of UniquePtr for A
+
+impl cxx_qt::Trait for A {} // explicit CXX-Qt trait implementation of Trait for A</code></pre>
+<ul>
+<li><a href="https://docs.rs/cxx-qt/latest/cxx_qt/trait.CxxQtType.html">CxxQtType</a> - trait to reach the Rust implementation of a QObject</li>
+<li><a href="https://docs.rs/cxx-qt/latest/cxx_qt/trait.Constructor.html">Constructor</a> - custom constructor</li>
+<li><a href="https://docs.rs/cxx-qt/latest/cxx_qt/trait.Initialize.html">Initialize</a> - execute Rust code when the object is constructed</li>
+<li><a href="https://docs.rs/cxx-qt/latest/cxx_qt/trait.Locking.html">Locking</a> - marker trait whether locking is enabled</li>
+<li><a href="https://docs.rs/cxx-qt/latest/cxx_qt/trait.Threading.html">Threading</a> - marker trait whether CXX-Qt threading should be enabled</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,488 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>extern &quot;RustQt&quot; - CXX-Qt Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../getting-started/index.html"><strong aria-hidden="true">2.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../getting-started/1-qobjects-in-rust.html"><strong aria-hidden="true">2.1.</strong> QObjects in Rust</a></li><li class="chapter-item expanded "><a href="../getting-started/2-our-first-cxx-qt-module.html"><strong aria-hidden="true">2.2.</strong> Our first CXX-Qt module</a></li><li class="chapter-item expanded "><a href="../getting-started/3-qml-gui.html"><strong aria-hidden="true">2.3.</strong> Creating the QML GUI</a></li><li class="chapter-item expanded "><a href="../getting-started/4-cargo-executable.html"><strong aria-hidden="true">2.4.</strong> Building with Cargo</a></li><li class="chapter-item expanded "><a href="../getting-started/5-cmake-integration.html"><strong aria-hidden="true">2.5.</strong> Building with CMake</a></li></ol></li><li class="chapter-item expanded "><a href="../concepts/index.html"><strong aria-hidden="true">3.</strong> Core Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../concepts/build_systems.html"><strong aria-hidden="true">3.1.</strong> Build Systems</a></li><li class="chapter-item expanded "><a href="../concepts/generated_qobject.html"><strong aria-hidden="true">3.2.</strong> Generated QObject</a></li><li class="chapter-item expanded "><a href="../concepts/types.html"><strong aria-hidden="true">3.3.</strong> Types</a></li><li class="chapter-item expanded "><a href="../concepts/nested_objects.html"><strong aria-hidden="true">3.4.</strong> Nested Objects</a></li><li class="chapter-item expanded "><a href="../concepts/inheritance.html"><strong aria-hidden="true">3.5.</strong> Inheritance & Overriding</a></li></ol></li><li class="chapter-item expanded "><a href="../bridge/index.html"><strong aria-hidden="true">4.</strong> Reference: the bridge module</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../bridge/extern_rustqt.html" class="active"><strong aria-hidden="true">4.1.</strong> extern "RustQt"</a></li><li class="chapter-item expanded "><a href="../bridge/extern_cppqt.html"><strong aria-hidden="true">4.2.</strong> extern "C++Qt"</a></li><li class="chapter-item expanded "><a href="../bridge/shared_types.html"><strong aria-hidden="true">4.3.</strong> Shared types</a></li><li class="chapter-item expanded "><a href="../bridge/attributes.html"><strong aria-hidden="true">4.4.</strong> Attributes</a></li><li class="chapter-item expanded "><a href="../bridge/traits.html"><strong aria-hidden="true">4.5.</strong> Traits</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">CXX-Qt Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!--
+SPDX-FileCopyrightText: 2023 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
+SPDX-FileContributor: Andrew Hayzen <andrew.hayzen@kdab.com>
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+-->
+<h1 id="extern-rustqt"><a class="header" href="#extern-rustqt">extern &quot;RustQt&quot;</a></h1>
+<ul>
+<li><a href="#qobjects">QObjects</a></li>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#methods">Methods</a></li>
+<li><a href="#signals">Signals</a></li>
+</ul>
+<pre><code class="language-rust ignore noplayground">#[cxx_qt::bridge]
+mod ffi {
+    extern &quot;RustQt&quot; {
+
+    }
+}</code></pre>
+<p>The <code>extern &quot;RustQt&quot;</code> section of a CXX bridge declares Rust types and signatures to be made available to Qt and C++.</p>
+<p>The CXX code generator uses your <code>extern &quot;Rust&quot;</code> section(s) to produce a C++ header file containing the corresponding C++ declarations. The generated header has a file name matching the module ident or the <code>cxx_file_stem</code> field in the <code>#[cxx_qt::bridge]</code> attribute and with a <code>.cxxqt.h</code> file extension.</p>
+<p>A bridge module may contain zero or more <code>extern &quot;RustQt&quot;</code> blocks.</p>
+<p>This complements the <a href="https://cxx.rs/extern-rust.html"><code>extern &quot;Rust&quot;</code> CXX section</a>
+but allows for declaring Qt specific features on C++ types.</p>
+<h2 id="qobjects"><a class="header" href="#qobjects">QObjects</a></h2>
+<p>Types specified with a <code>#[qobject]</code> attribute are generated in C++ as a <a href="https://doc.qt.io/qt-6/qobject.html"><code>QObject</code></a>.</p>
+<p>The left side of the type specifies the C++ generated type and name, when referring to the C++ context this should be used. The right side of the type specifies which Rust type provides the inner implementation of the type (for example fields ).</p>
+<pre><code class="language-rust ignore noplayground">#[cxx_qt::bridge]
+mod ffi {
+    extern &quot;RustQt&quot; {
+        #[qobject]
+        type MyObject = super::MyObjectRust;
+    }
+}
+
+#[derive(Default)]
+struct MyObjectRust;</code></pre>
+<h3 id="qml-attributes"><a class="header" href="#qml-attributes">QML Attributes</a></h3>
+<p>QObjects can be registered as a QML type directly at build time by using the <a href="https://doc.qt.io/qt-6/qqmlengine.html#QML_ELEMENT"><code>#[qml_element]</code></a> attribute.</p>
+<pre><code class="language-rust ignore noplayground">    unsafe extern &quot;RustQt&quot; {
+        // The QObject definition
+        // We tell CXX-Qt that we want a QObject class with the name MyObject
+        // based on the Rust struct MyObjectRust.
+        #[qobject]
+        #[qml_element]
+        #[qproperty(i32, number)]
+        #[qproperty(QString, string)]
+        type MyObject = super::MyObjectRust;
+    }</code></pre>
+<p>Additionally, you can configure the QML registration with these attributes:</p>
+<!--
+TODO: we need to add https://doc.qt.io/qt-6/qqmlengine.html#QML_ANONYMOUS
+TODO: we need to add https://doc.qt.io/qt-6/qqmlengine.html#QML_INTERFACE
+-->
+<ul>
+<li><a href="https://doc.qt.io/qt-6/qqmlengine.html#QML_NAMED_ELEMENT"><code>qml_name</code></a>: Use a different type name for QML.</li>
+<li><a href="https://doc.qt.io/qt-6/qqmlengine.html#QML_UNCREATABLE"><code>qml_uncreatable</code></a>: Mark the type as uncreatable from QML. It may still be returned by C++/Rust code.</li>
+<li><a href="https://doc.qt.io/qt-6/qqmlengine.html#QML_SINGLETON"><code>qml_singleton</code></a>: An instance of the QObject will be instantiated as a singleton in QML.</li>
+</ul>
+<blockquote>
+<p>The Rust file must be included within a <a href="../concepts/build_systems.html#qml-modules">QML module in the <code>build.rs</code> file</a></p>
+</blockquote>
+<h3 id="base-attribute"><a class="header" href="#base-attribute"><code>base</code> attribute</a></h3>
+<p>Use the <code>base</code> attribute to specify a C++ class that the C++ QObject will inherit from.
+The base class must inherit from QObject (directly or indirectly). If you do not specify a base attribute, it will inherit directly from QObject.</p>
+<pre><code class="language-rust ignore noplayground">    extern &quot;RustQt&quot; {
+        #[qobject]
+        #[base = &quot;QAbstractListModel&quot;]
+        #[qml_element]
+        #[qproperty(State, state)]
+        type CustomBaseClass = super::CustomBaseClassRust;
+    }</code></pre>
+<p>Use the CXX <code>include!</code> macro to include the appropriate C++ header for the base class:</p>
+<pre><code class="language-rust ignore noplayground">    unsafe extern &quot;C++&quot; {
+        include!(&lt;QtCore/QAbstractListModel&gt;);
+    }</code></pre>
+<p>For more information on inheritance and how to override methods see the <a href="../concepts/inheritance.html">Inheritance &amp; Overriding</a> page.</p>
+<p><a href="https://github.com/KDAB/cxx-qt/blob/main/examples/qml_features/rust/src/custom_base_class.rs">Full Example</a></p>
+<h3 id="traits"><a class="header" href="#traits">Traits</a></h3>
+<p>The <a href="https://doc.rust-lang.org/std/default/trait.Default.html"><code>Default</code> trait</a> needs to be implemented for the <code>#[qobject]</code> marked struct either by hand or by using the derive macro <code>#[derive(Default)]</code>. Or the <a href="https://docs.rs/cxx-qt/latest/cxx_qt/trait.Constructor.html"><code>cxx_qt::Constructor</code></a> trait needs to be implemented for the type.</p>
+<p>For further documentation see the <a href="./traits.html">traits page</a>.</p>
+<h2 id="properties"><a class="header" href="#properties">Properties</a></h2>
+<p>The <code>#[qproperty(TYPE, NAME, ...)]</code> attribute can be specified on a <a href="#qobjects"><code>#[qobject]</code> marked type</a> to expose a <a href="https://doc.qt.io/qt-6/properties.html"><code>Q_PROPERTY</code></a> on the generated QObject.</p>
+<pre><code class="language-rust ignore noplayground">        #[qobject]
+        #[qml_element]
+        #[qproperty(bool, connected)]
+        #[qproperty(QUrl, connected_url)]
+        #[qproperty(QUrl, previous_connected_url)]
+        #[qproperty(QString, status_message)]
+        type RustProperties = super::RustPropertiesRust;</code></pre>
+<p>The type and name of the</p>
+<pre><code class="language-rust ignore noplayground">/// A QObject which has Q_PROPERTYs
+pub struct RustPropertiesRust {
+    /// A connected Q_PROPERTY
+    connected: bool,
+
+    /// A connected_url Q_PROPERTY
+    pub(crate) connected_url: QUrl,
+
+    /// A previous_connected_url Q_PROPERTY
+    previous_connected_url: QUrl,
+
+    /// A status_message Q_PROPERTY
+    status_message: QString,
+}</code></pre>
+<p>For every <code>#[qproperty]</code>, CXX-Qt will generate setters and getters, as well as a &quot;changed&quot; signal.</p>
+<p>On the C++ side:</p>
+<ul>
+<li>setter: <code>set&lt;Property&gt;</code></li>
+<li>getter: <code>get&lt;Property&gt;</code></li>
+<li>changed: <code>&lt;Property&gt;Changed</code></li>
+</ul>
+<p>On the Rust side:</p>
+<ul>
+<li>setter: <code>set_&lt;Property&gt;</code></li>
+<li>getter: <code>&lt;Property&gt;</code></li>
+<li>changed: <code>&lt;Property&gt;_changed</code></li>
+</ul>
+<p>Also the generated Rust methods for <a href="#signals">signals</a></p>
+<ul>
+<li>connect: <code>connect_&lt;Property&gt;_changed</code></li>
+<li>on: <code>on_&lt;Property&gt;_changed</code></li>
+</ul>
+<p>Where <code>&lt;Property&gt;</code> is the name of the property.</p>
+<p>These setters and getters assure that the changed signal is emitted every time the property is edited.</p>
+<blockquote>
+<p>Note that in the future it will be possible to specify custom getters and setters</p>
+</blockquote>
+<h2 id="methods"><a class="header" href="#methods">Methods</a></h2>
+<p>Any signature with a <code>self</code> parameter is interpreted as a Rust method and exposed to C++ method for the given type.
+The type much be either a shared reference <code>self: &amp;T</code> or a pinned mutable reference <code>self: Pin&lt;&amp;mut T&gt;</code>, where <code>T</code> is the <a href="#qobjects">QObject</a> type.</p>
+<pre><code class="language-rust ignore noplayground">    unsafe extern &quot;RustQt&quot; {
+        /// C++ only method which returns the red value
+        fn red_value(self: &amp;RustInvokables) -&gt; f32;
+    }</code></pre>
+<p>Implementations of the method are then written as normal on the C++ type outside the bridge.</p>
+<pre><code class="language-rust ignore noplayground">impl qobject::RustInvokables {
+    /// C++ only method which returns the red value
+    pub fn red_value(&amp;self) -&gt; f32 {
+        self.red
+    }
+}</code></pre>
+<blockquote>
+<p>Note how this uses <code>impl qobject::T</code> rather than <code>impl T</code> where <code>qobject</code> is the bridge module name.</p>
+</blockquote>
+<h3 id="invokables"><a class="header" href="#invokables">Invokables</a></h3>
+<p>The <code>#[qinvokable]</code> attribute can be specified on signatures to expose them as a <a href="https://doc.qt.io/qt-6/qobject.html#Q_INVOKABLE"><code>Q_INVOKABLE</code></a> in C++.</p>
+<pre><code class="language-rust ignore noplayground">    unsafe extern &quot;RustQt&quot; {
+        /// Immutable invokable method that returns the QColor
+        #[qinvokable]
+        fn load_color(self: &amp;RustInvokables) -&gt; Result&lt;QColor&gt;;
+
+        /// Mutable invokable method that stores a color
+        #[qinvokable]
+        fn store_color(self: Pin&lt;&amp;mut RustInvokables&gt;, red: f32, green: f32, blue: f32);
+
+        /// Mutable invokable method that stores a color with an enum
+        #[qinvokable]
+        fn store_color_with_enum(self: Pin&lt;&amp;mut RustInvokables&gt;, color: Color);
+
+        /// Mutable invokable method with no parameters that resets the color
+        #[qinvokable]
+        fn reset(self: Pin&lt;&amp;mut RustInvokables&gt;);
+    }</code></pre>
+<p>Implementations then have no difference to non invokable methods.</p>
+<pre><code class="language-rust ignore noplayground">impl qobject::RustInvokables {
+    /// Immutable invokable method that returns the QColor
+    pub fn load_color(&amp;self) -&gt; Result&lt;QColor, i32&gt; {
+        Ok(self.as_qcolor())
+    }
+
+    /// Mutable invokable method that stores a color
+    pub fn store_color(self: Pin&lt;&amp;mut Self&gt;, red: f32, green: f32, blue: f32) {
+        self.store_helper(red, green, blue);
+    }
+
+    /// QENUMS!
+    pub fn store_color_with_enum(self: Pin&lt;&amp;mut Self&gt;, color: qobject::Color) {
+        use qobject::Color;
+        let (r, g, b) = match color {
+            Color::Red =&gt; (1.0, 0.0, 0.0),
+            Color::Green =&gt; (0.0, 1.0, 0.0),
+            Color::Blue =&gt; (0.0, 0.0, 1.0),
+            _ =&gt; (0.0, 0.0, 0.0),
+        };
+        self.store_helper(r, g, b);
+    }
+
+    /// Mutable invokable method with no parameters that resets the color
+    pub fn reset(self: Pin&lt;&amp;mut Self&gt;) {
+        self.store_helper(0.0, 0.4667, 0.7843);
+    }
+}</code></pre>
+<h3 id="inheritance"><a class="header" href="#inheritance">Inheritance</a></h3>
+<p>Methods or signals that already exist on the base class of an object can be accessed via the <code>#[inherit]</code> attribute.</p>
+<p>For documentation see the <a href="../concepts/inheritance.html">inheritance</a> page.</p>
+<h3 id="specifiers"><a class="header" href="#specifiers">Specifiers</a></h3>
+<p>Generated methods can have C++ specifiers necessary to implement inheritance.</p>
+<div class="table-wrapper"><table><thead><tr><th>C++ keyword</th><th>CXX-Qt attribute</th></tr></thead><tbody>
+<tr><td><code>override</code></td><td><code>#[cxx_override]</code></td></tr>
+<tr><td><code>virtual</code></td><td><code>#[cxx_virtual]</code></td></tr>
+<tr><td><code>final</code></td><td><code>#[cxx_final]</code></td></tr>
+</tbody></table>
+</div>
+<p>These are specified as an attribute on the method signature.</p>
+<pre><code class="language-rust ignore">    unsafe extern &quot;RustQt&quot; {
+        #[qinvokable]
+        #[cxx_override]
+        fn data(self: &amp;CustomBaseClass, index: &amp;QModelIndex, role: i32) -&gt; QVariant;
+    }</code></pre>
+<h2 id="signals"><a class="header" href="#signals">Signals</a></h2>
+<p>The <code>qsignal</code> attribute is used in an <code>extern &quot;RustQt&quot;</code> block to define <a href="https://doc.qt.io/qt-6/signalsandslots.html">signals</a> for the a QObject.</p>
+<pre><code class="language-rust ignore noplayground">    unsafe extern &quot;RustQt&quot; {
+        /// A Q_SIGNAL emitted when a connection occurs
+        #[qsignal]
+        fn connected(self: Pin&lt;&amp;mut RustSignals&gt;, url: &amp;QUrl);
+
+        /// A Q_SIGNAL emitted when a disconnect occurs
+        #[qsignal]
+        fn disconnected(self: Pin&lt;&amp;mut RustSignals&gt;);
+
+        /// A Q_SIGNAL emitted when an error occurs
+        #[qsignal]
+        fn error(self: Pin&lt;&amp;mut RustSignals&gt;, message: QString);
+    }</code></pre>
+<p>For every function signature in the extern block, CXX-Qt will generate a signal on the corresponding QObject.
+If the function has parameters, they will become the parameters for the corresponding signal.</p>
+<p>If a signal is defined on the base class of the QObject then <code>#[inherit]</code> can be used to indicate to CXX-Qt that the <code>Q_SIGNAL</code> does not need to be created in C++.</p>
+<p>A full example can be found in the <a href="https://github.com/KDAB/cxx-qt/blob/main/examples/qml_features/rust/src/signals.rs">qml features</a>.</p>
+<blockquote>
+<p>Note that <code>#[cxx_name = &quot;...&quot;]</code> can also be used on a signal to declare a different name in C++ to Rust</p>
+</blockquote>
+<blockquote>
+<p>Note using <code>pub(self)</code> as the visibility of the signal
+allows for declaring private signals</p>
+</blockquote>
+<h3 id="connecting-to-a-signal"><a class="header" href="#connecting-to-a-signal">Connecting to a signal</a></h3>
+<p>For every signal defined in the enum, two methods are generated.</p>
+<ol>
+<li><code>on_&lt;signal_name&gt;</code></li>
+<li><code>connect_&lt;signal_name&gt;</code></li>
+</ol>
+<p>The <code>on_&lt;signal_name&gt;</code> method takes a handler function as the parameter, which will be called when the signal is emitted.
+That handler function's first argument is the qobject and the remaining arguments are the signal parameters.</p>
+<p>The <code>connect_&lt;signal_name&gt;</code> function additionally takes the <a href="https://doc.qt.io/qt-6/qt.html#ConnectionType-enum">Qt connection type</a> as a parameter.</p>
+<p>Note that by using the <code>#[inherit]</code> macro on a signal, connections can be made to property changes
+using the signal name <code>&lt;property&gt;Changed</code> with no parameters.</p>
+<pre><code class="language-rust ignore noplayground">                    let connections = [
+                        qobject.as_mut().on_connected(|_, url| {
+                            println!(&quot;Connected: {}&quot;, url);
+                        }),
+                        qobject.as_mut().on_disconnected(|_| {
+                            println!(&quot;Disconnected&quot;);
+                        }),
+                        // Demonstration of connecting with a different connection type
+                        qobject.as_mut().connect_error(
+                            |_, message| {
+                                println!(&quot;Error: {}&quot;, message);
+                            },
+                            ConnectionType::QueuedConnection,
+                        ),
+                    ];
+                    qobject.as_mut().rust_mut().connections = Some(connections);</code></pre>
+<p>Each connection returns a <a href="https://doc.qt.io/qt-6/qmetaobject-connection.html"><code>QMetaObject::Connection</code></a> which is used to manage the connection.</p>
+<p>Note that the <code>QMetaObjectConnection</code> returned by CXX-Qt behaves a bit different from the Qt C++ implementation.</p>
+<p>When the <code>QMetaObjectConnection</code> is dropped, it automatically disconnects the connection, similar to how a C++ <code>std::unique_ptr</code> or Rusts <code>Box</code> behaves.
+If you don't want to store the QMetaObjectConnection, call <code>release</code>, which will drop the object without disconnecting.
+In this case, it is no longer possible to disconnect later.</p>
+<pre><code class="language-rust ignore noplayground">                // By making connections None, we trigger a drop on the connections
+                // this then causes disconnections
+                qobject.as_mut().rust_mut().connections = None;</code></pre>
+<h3 id="emitting-a-signal"><a class="header" href="#emitting-a-signal">Emitting a signal</a></h3>
+<p>Call the function signature defined in the <code>extern &quot;RustQt&quot;</code> block to emit the signal.</p>
+<p>Note that these are defined on the generated QObject <a href="../concepts/generated_qobject.html"><code>qobject::T</code></a>, so can be called from any mutable <code>#[qinvokable]</code>.</p>
+<p>The function will immediately emit the signal.
+Depending on the connection type, the connected slots will be called either immediately or from the event loop (See <a href="https://doc.qt.io/qt-6/qt.html#ConnectionType-enum">the different connection types</a>).
+To queue the call until the next cycle of the Qt event loop, you can use the <a href="https://docs.rs/cxx-qt/latest/cxx_qt/struct.CxxQtThread.html"><code>CxxQtThread</code></a>.</p>
+<h3 id="inheritance-1"><a class="header" href="#inheritance-1">Inheritance</a></h3>
+<p>If a signal is defined on the base class of the QObject then the <code>#[inherit]</code> attribute can be used to indicate to CXX-Qt that the <code>Q_SIGNAL</code> does not need to be created in C++.</p>
+<pre><code class="language-rust ignore noplayground">    unsafe extern &quot;RustQt&quot; {
+        /// Inherit the DataChanged signal from the QAbstractListModel base class
+        #[inherit]
+        #[qsignal]
+        fn data_changed(
+            self: Pin&lt;&amp;mut CustomBaseClass&gt;,
+            top_left: &amp;QModelIndex,
+            bottom_right: &amp;QModelIndex,
+            roles: &amp;QVector_i32,
+        );
+    }</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../bridge/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../bridge/extern_cppqt.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../bridge/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../bridge/extern_cppqt.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
